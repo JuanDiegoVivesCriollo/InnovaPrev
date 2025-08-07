@@ -1,0 +1,128 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.innovaprev.site/#website",
+      "url": "https://www.innovaprev.site/",
+      "name": "InnovaPrev - Seguridad Laboral Perú",
+      "description": "Especialistas en seguridad laboral, prevención de riesgos y gestión de emergencias en Perú",
+      "publisher": {
+        "@id": "https://www.innovaprev.site/#organization"
+      },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.innovaprev.site/?s={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ],
+      "inLanguage": "es-PE"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.innovaprev.site/#organization",
+      "name": "InnovaPrev - OSDI Consultoría Capacitación y Prevención S.A.C.",
+      "alternateName": ["InnovaPrev", "OSDI", "OSDI S.A.C."],
+      "url": "https://www.innovaprev.site/",
+      "logo": {
+        "@type": "ImageObject",
+        "inLanguage": "es-PE",
+        "@id": "https://www.innovaprev.site/#/schema/logo/image/",
+        "url": "https://www.innovaprev.site/logofooter.svg",
+        "contentUrl": "https://www.innovaprev.site/logofooter.svg",
+        "width": 512,
+        "height": 512,
+        "caption": "InnovaPrev"
+      },
+      "image": {
+        "@id": "https://www.innovaprev.site/#/schema/logo/image/"
+      },
+      "sameAs": [
+        "https://www.facebook.com/InnovaPrev",
+        "https://www.linkedin.com/company/innovaprev",
+        "https://wa.me/51950107604"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+51-950-107-604",
+          "contactType": "customer service",
+          "areaServed": "PE",
+          "availableLanguage": ["es", "Spanish"]
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "Operaciones@innovaprev.site",
+          "contactType": "customer service",
+          "areaServed": "PE"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Oscar R Benavides 3217",
+        "addressLocality": "Callao",
+        "addressRegion": "Lima",
+        "postalCode": "07006",
+        "addressCountry": "PE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -12.0464,
+        "longitude": -77.0428
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
+        }
+      ],
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Perú"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de Seguridad y Prevención",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Evaluación de Riesgos",
+            "description": "Identificación y análisis completo de riesgos laborales"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Planes de Emergencia",
+            "description": "Desarrollo de planes de contingencia y gestión de crisis"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Capacitación SST",
+            "description": "Formación especializada en Seguridad y Salud en el Trabajo"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Medicina Ocupacional",
+            "description": "Servicios médicos especializados para empresas"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Auditorías de Seguridad",
+            "description": "Evaluación integral de sistemas de seguridad empresarial"
+          }
+        ]
+      }
+    }
+  ]
+}

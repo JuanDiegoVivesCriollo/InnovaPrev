@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.innovaprev.site/sitemap.xml
+
+# Disallow common bot traps
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /.git/
+
+# Allow important files
+Allow: /dist/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.webp
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.svg
+Allow: /favicon.ico
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
