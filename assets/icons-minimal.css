@@ -1,0 +1,25 @@
+/* Font Awesome Icons - Solo los íconos que usas - Optimizado */
+.fas{font-family:"Font Awesome 6 Free";font-weight:900;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;-webkit-font-smoothing:antialiased;}
+.fa-clock:before{content:"\f017";}
+.fa-certificate:before{content:"\f0a3";}
+.fa-handshake:before{content:"\f2b5";}
+.fa-tools:before{content:"\f7d9";}
+.fa-clipboard-list:before{content:"\f46d";}
+.fa-exclamation-triangle:before{content:"\f071";}
+.fa-user-md:before{content:"\f0f0";}
+.fa-industry:before{content:"\f275";}
+.fa-graduation-cap:before{content:"\f19d";}
+.fa-shopping-cart:before{content:"\f07a";}
+.fa-building:before{content:"\f1ad";}
+.fa-hospital:before{content:"\f0f8";}
+.fa-hotel:before{content:"\f594";}
+.fa-utensils:before{content:"\f2e7";}
+.fa-hard-hat:before{content:"\f807";}
+.fa-phone:before{content:"\f095";}
+.fa-envelope:before{content:"\f0e0";}
+.fa-calendar-alt:before{content:"\f073";}
+.fa-arrow-right:before{content:"\f061";}
+.fa-times:before{content:"\f00d";}
+
+/* Font Awesome Font Face - Minificado */
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:swap;src:url("data:font/woff2;base64,d09GMgABAAAAABNsAA4AAAAA...truncated")}

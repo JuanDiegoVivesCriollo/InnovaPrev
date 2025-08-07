@@ -1,0 +1,88 @@
+/* Poppins Font - Only the weights we use */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB8wAA4AAAAAOdgAAB7aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbIBwqBmAAgTIRCAqBiDSBeAuBFAABNgIkAx4EIAWFXAeMLgwHG9cxAxEVpMqQfSzYuIEthrHNth3Z1j8fD9b398+dufchZwJuJGkgOJGY+MhRY5ov5/W8CxFIThBdif8/f6aq1wgmEONOYcUNHPH20wL9vA1qwRPvJw2z2q8Kv6atbds+Ld5P2LZ920PCZUN0bnrbsm3bNi+37ds+9bZt27Zt2wYxNqlPV+b5DvJDqvqwO5MzPefMzPklcm6iDqYYOSE=) format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB8wAA4AAAAAOdgAAB7aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbIBwqBmAAgTIRCAqBiDSBeAuBFAABNgIkAx4EIAWFXAeMLgwHG9cxAxEVpMqQfSzYuIEthrHNth3Z1j8fD9b398+dufchZwJuJGkgOJGY+MhRY5ov5/W8CxFIThBdif8/f6aq1wgmEONOYcUNHPH20wL9vA1qwRPvJw2z2q8Kv6atbds+Ld5P2LZ920PCZUN0bnrbsm3bNi+37ds+9bZt27Zt2wYxNqlPV+b5DvJDqvqwO5MzPefMzPklcm6iDqYYOSE=) format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB8wAA4AAAAAOdgAAB7aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbIBwqBmAAgTIRCAqBiDSBeAuBFAABNgIkAx4EIAWFXAeMLgwHG9cxAxEVpMqQfSzYuIEthrHNth3Z1j8fD9b398+dufchZwJuJGkgOJGY+MhRY5ov5/W8CxFIThBdif8/f6aq1wgmEONOYcUNHPH20wL9vA1qwRPvJw2z2q8Kv6atbds+Ld5P2LZ920PCZUN0bnrbsm3bNi+37ds+9bZt27Zt2wYxNqlPV+b5DvJDqvqwO5MzPefMzPklcm6iDqYYOSE=) format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB8wAA4AAAAAOdgAAB7aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbIBwqBmAAgTIRCAqBiDSBeAuBFAABNgIkAx4EIAWFXAeMLgwHG9cxAxEVpMqQfSzYuIEthrHNth3Z1j8fD9b398+dufchZwJuJGkgOJGY+MhRY5ov5/W8CxFIThBdif8/f6aq1wgmEONOYcUNHPH20wL9vA1qwRPvJw2z2q8Kv6atbds+Ld5P2LZ920PCZUN0bnrbsm3bNi+37ds+9bZt27Zt2wYxNqlPV+b5DvJDqvqwO5MzPefMzPklcm6iDqYYOSE=) format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB8wAA4AAAAAOdgAAB7aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbIBwqBmAAgTIRCAqBiDSBeAuBFAABNgIkAx4EIAWFXAeMLgwHG9cxAxEVpMqQfSzYuIEthrHNth3Z1j8fD9b398+dufchZwJuJGkgOJGY+MhRY5ov5/W8CxFIThBdif8/f6aq1wgmEONOYcUNHPH20wL9vA1qwRPvJw2z2q8Kv6atbds+Ld5P2LZ920PCZUN0bnrbsm3bNi+37ds+9bZt27Zt2wYxNqlPV+b5DvJDqvqwO5MzPefMzPklcm6iDqYYOSE=) format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB8wAA4AAAAAOdgAAB7aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbIBwqBmAAgTIRCAqBiDSBeAuBFAABNgIkAx4EIAWFXAeMLgwHG9cxAxEVpMqQfSzYuIEthrHNth3Z1j8fD9b398+dufchZwJuJGkgOJGY+MhRY5ov5/W8CxFIThBdif8/f6aq1wgmEONOYcUNHPH20wL9vA1qwRPvJw2z2q8Kv6atbds+Ld5P2LZ920PCZUN0bnrbsm3bNi+37ds+9bZt27Zt2wYxNqlPV+b5DvJDqvqwO5MzPefMzPklcm6iDqYYOSE=) format('woff2');
+}
+
+/* Font Awesome Icons - Solo los que usas */
+.fas {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa-clock:before { content: "\f017"; }
+.fa-certificate:before { content: "\f0a3"; }
+.fa-handshake:before { content: "\f2b5"; }
+.fa-tools:before { content: "\f7d9"; }
+.fa-clipboard-list:before { content: "\f46d"; }
+.fa-exclamation-triangle:before { content: "\f071"; }
+.fa-user-md:before { content: "\f0f0"; }
+.fa-industry:before { content: "\f275"; }
+.fa-graduation-cap:before { content: "\f19d"; }
+.fa-shopping-cart:before { content: "\f07a"; }
+.fa-building:before { content: "\f1ad"; }
+.fa-hospital:before { content: "\f0f8"; }
+.fa-hotel:before { content: "\f594"; }
+.fa-utensils:before { content: "\f2e7"; }
+.fa-hard-hat:before { content: "\f807"; }
+.fa-phone:before { content: "\f095"; }
+.fa-envelope:before { content: "\f0e0"; }
+.fa-calendar-alt:before { content: "\f073"; }
+.fa-arrow-right:before { content: "\f061"; }
+.fa-times:before { content: "\f00d"; }
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAAm8AA4AAAAAFGgAAAllAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGiYbIBwmBm==) format('woff2');
+}
