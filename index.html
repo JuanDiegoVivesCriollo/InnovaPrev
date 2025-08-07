@@ -41,7 +41,7 @@
     
     <!-- Load JavaScript async -->
     <script>
-        // Inline critical JS for immediate loading screen
+        // Loading screen functionality
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loading-screen');
             const hasVisited = sessionStorage.getItem('hasVisitedSite');
@@ -56,6 +56,86 @@
                 }, 1500);
             } else {
                 loadingScreen.style.display = 'none';
+            }
+        });
+
+        // Hamburger Menu Functionality - Critical for UX
+        let sidebarOpen = false;
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.getElementById('hamburger');
+            
+            if (sidebarOpen) {
+                // Close sidebar
+                if (sidebar) {
+                    sidebar.classList.add('translate-x-full');
+                    sidebar.classList.remove('translate-x-0');
+                }
+                if (overlay) {
+                    overlay.classList.add('invisible', 'opacity-0');
+                    overlay.classList.remove('opacity-100');
+                }
+                document.body.style.overflow = '';
+                
+                // Animate hamburger back to normal
+                if (hamburger) {
+                    const bars = hamburger.querySelectorAll('.bar');
+                    if (bars.length >= 3) {
+                        bars[0].style.transform = '';
+                        bars[0].style.opacity = '1';
+                        bars[1].style.opacity = '1';
+                        bars[2].style.transform = '';
+                    }
+                }
+                sidebarOpen = false;
+            } else {
+                // Open sidebar
+                if (sidebar) {
+                    sidebar.classList.remove('translate-x-full');
+                    sidebar.classList.add('translate-x-0');
+                }
+                if (overlay) {
+                    overlay.classList.remove('invisible', 'opacity-0');
+                    overlay.classList.add('opacity-100');
+                }
+                document.body.style.overflow = 'hidden';
+                
+                // Animate hamburger to X
+                if (hamburger) {
+                    const bars = hamburger.querySelectorAll('.bar');
+                    if (bars.length >= 3) {
+                        bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                        bars[1].style.opacity = '0';
+                        bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                    }
+                }
+                sidebarOpen = true;
+            }
+            
+            // Update aria-expanded
+            if (hamburger) {
+                hamburger.setAttribute('aria-expanded', sidebarOpen ? 'true' : 'false');
+            }
+        }
+        
+        // Event Listeners for Hamburger Menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const closeBtn = document.getElementById('close-btn');
+            const overlay = document.getElementById('overlay');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', toggleSidebar);
+            }
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', toggleSidebar);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', toggleSidebar);
             }
         });
     </script>
@@ -97,20 +177,20 @@
                 </ul>
                 
                 <!-- Hamburger Menu -->
-                <button id="hamburger" class="lg:hidden flex flex-col gap-1 p-2">
-                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                <button id="hamburger" class="lg:hidden flex flex-col gap-1 p-2" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Sidebar -->
-    <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50 lg:hidden opacity-0 invisible">
+    <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-[60] lg:hidden">
         <div class="flex items-center justify-between p-6 border-b">
-            <span class="text-xl font-bold text-primary">INNOVA PREV</span>
-            <button id="close-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <span class="text-xl font-bold text-primary">🛡️ INNOVA PREV</span>
+            <button id="close-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors z-[70]">
                 <i class="fas fa-times text-gray-600"></i>
             </button>
         </div>
@@ -123,7 +203,7 @@
     </div>
 
     <!-- Overlay -->
-    <div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-300 z-40"></div>
+    <div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-300 z-[55]"></div>
 
     <!-- Main Content -->
     <main class="min-h-screen">
@@ -175,6 +255,7 @@
                     
                     <!-- Feature Cards -->
                     <div class="space-y-6 feature-cards">
+                        <h2 class="sr-only">Características Principales</h2>
                         <div class="glass-effect p-6 rounded-xl border border-white/20">
                             <div class="flex items-start space-x-4">
                                 <div class="bg-primary/20 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
@@ -499,15 +580,53 @@
         </div>
     </footer>
 
-    <!-- Load non-critical JS async -->
+    <!-- Load remaining JavaScript for animations -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
-        // Load main script after page loads
+        // Load counter animations after anime.js is available
         window.addEventListener('load', function() {
-            const script = document.createElement('script');
-            script.src = 'script-simple.js';
-            script.async = true;
-            document.head.appendChild(script);
+            // Wait a bit for anime.js to be available
+            setTimeout(function() {
+                // Counter Animation
+                function animateCounters() {
+                    const counters = document.querySelectorAll('.counter');
+                    if (counters.length === 0) return;
+                    
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+                        
+                        let current = 0;
+                        const increment = target / (duration / 16); // 60fps
+                        
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.textContent = Math.floor(current) + '+';
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target + '+';
+                            }
+                        };
+                        updateCounter();
+                    });
+                }
+
+                // Initialize counter animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            observer.disconnect();
+                        }
+                    });
+                });
+
+                const statsSection = document.querySelector('.counter-grid');
+                if (statsSection) {
+                    observer.observe(statsSection);
+                }
+            }, 100);
         });
     </script>
 </body>

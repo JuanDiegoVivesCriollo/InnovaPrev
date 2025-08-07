@@ -51,6 +51,89 @@
             } else {
                 loadingScreen.style.display = 'none';
             }
+            
+            // Hamburger menu functionality - inline for immediate availability
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('close-btn');
+            let sidebarOpen = false;
+
+            function toggleSidebar() {
+                if (sidebarOpen) {
+                    // Close sidebar
+                    if (sidebar) {
+                        sidebar.classList.remove('translate-x-0');
+                        sidebar.classList.add('translate-x-full');
+                    }
+                    if (overlay) {
+                        overlay.classList.remove('opacity-100', 'visible');
+                        overlay.classList.add('opacity-0', 'invisible');
+                    }
+                    document.body.style.overflow = '';
+                    
+                    // Reset hamburger
+                    if (hamburger) {
+                        const bars = hamburger.querySelectorAll('.bar');
+                        if (bars.length >= 3) {
+                            bars[0].style.transform = '';
+                            bars[1].style.opacity = '1';
+                            bars[2].style.transform = '';
+                        }
+                    }
+                    sidebarOpen = false;
+                } else {
+                    // Open sidebar
+                    if (sidebar) {
+                        sidebar.classList.remove('translate-x-full');
+                        sidebar.classList.add('translate-x-0');
+                    }
+                    if (overlay) {
+                        overlay.classList.remove('invisible', 'opacity-0');
+                        overlay.classList.add('opacity-100', 'visible');
+                    }
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animate hamburger to X
+                    if (hamburger) {
+                        const bars = hamburger.querySelectorAll('.bar');
+                        if (bars.length >= 3) {
+                            bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                            bars[1].style.opacity = '0';
+                            bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                        }
+                    }
+                    sidebarOpen = true;
+                }
+                
+                // Update aria-expanded
+                if (hamburger) {
+                    hamburger.setAttribute('aria-expanded', sidebarOpen ? 'true' : 'false');
+                }
+            }
+
+            // Event listeners
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleSidebar();
+                });
+            }
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (sidebarOpen) toggleSidebar();
+                });
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (sidebarOpen) toggleSidebar();
+                });
+            }
         });
     </script>
 </head>
@@ -91,10 +174,10 @@
                 </ul>
                 
                 <!-- Hamburger Menu -->
-                <button id="hamburger" class="lg:hidden flex flex-col gap-1 p-2">
-                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                <button id="hamburger" class="lg:hidden flex flex-col gap-1 p-2" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
                 </button>
             </div>
         </div>
@@ -239,15 +322,7 @@
         </div>
     </footer>
 
-    <!-- Load non-critical JS async -->
+    <!-- Load remaining JavaScript for animations -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            const script = document.createElement('script');
-            script.src = 'script-simple.js';
-            script.async = true;
-            document.head.appendChild(script);
-        });
-    </script>
 </body>
 </html>
