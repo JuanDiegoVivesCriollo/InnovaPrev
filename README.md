@@ -3,6 +3,11 @@
 ## Descripción
 Página web profesional moderna y responsive para InnovaPrev, empresa especializada en prevención y gestión de emergencias.
 
+## ⚡ Optimizaciones Implementadas
+- **CSS Optimizado**: Tailwind CSS compilado y minificado (23KB vs 3.5MB del CDN)
+- **Performance**: CSS sin dependencias externas + imágenes precargadas
+- **Responsive Design**: Compatible con mobile, tablet y desktop
+
 ## Características
 - **Diseño Moderno**: SPA (Single Page Application) con diseño contemporáneo
 - **Responsive**: Totalmente adaptado para dispositivos móviles, tablets y desktop

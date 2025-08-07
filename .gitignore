@@ -1,0 +1,22 @@
+# Node.js dependencies
+node_modules/
+
+# Development files
+src/
+package.json
+package-lock.json
+tailwind.config.js
+
+# Development documentation
+OPTIMIZACION.md
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
