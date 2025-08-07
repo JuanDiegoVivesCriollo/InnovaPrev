@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Servicios - INNOVA PREV</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#E85A33',
+                        'primary-dark': '#D14A28',
+                        'secondary': '#ffffff',
+                        'accent': '#FFD700',
+                        'dark': '#0f172a',
+                        'light': '#f8fafc',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'pulse-scale': 'pulse-scale 2s ease-in-out infinite',
+                        'slide-in': 'slide-in 0.5s ease-out',
+                        'fade-in': 'fade-in 0.6s ease-out',
+                    },
+                    keyframes: {
+                        'pulse-scale': {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+                            '50%': { transform: 'scale(1.05)', opacity: '0.8' },
+                        },
+                        'slide-in': {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg {
+            background: #E85A33;
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-poppins overflow-x-hidden">
+    <!-- Loading Spinner -->
+    <div id="loading-screen" class="fixed inset-0 z-50 gradient-bg flex items-center justify-center">
+        <div class="text-center text-white">
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <div class="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo" class="w-12 h-12 sm:w-16 sm:h-16">
+                    <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
+                </div>
+                <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-40 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <div class="flex items-center gap-3">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo" class="w-8 h-8 lg:w-10 lg:h-10">
+                    <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center space-x-8">
+                    <li><a href="index.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Inicio</a></li>
+                    <li><a href="sobre-nosotros.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Sobre Nosotros</a></li>
+                    <li><a href="servicios.html" class="nav-link text-primary font-medium">Servicios</a></li>
+                    <li><a href="contacto.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Contacto</a></li>
+                </ul>
+                
+                <!-- Hamburger Menu -->
+                <button id="hamburger" class="lg:hidden flex flex-col gap-1 p-2 z-50 relative">
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                    <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-[60] lg:hidden">
+        <div class="flex items-center justify-between p-6 border-b">
+            <span class="text-xl font-bold text-primary">🛡️ INNOVA PREV</span>
+            <button id="close-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors z-[70]">
+                <i class="fas fa-times text-gray-600"></i>
+            </button>
+        </div>
+        <ul class="py-6">
+            <li><a href="index.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Inicio</a></li>
+            <li><a href="sobre-nosotros.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Sobre Nosotros</a></li>
+            <li><a href="servicios.html" class="sidebar-link block px-6 py-4 text-primary bg-gray-50">Servicios</a></li>
+            <li><a href="contacto.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Contacto</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-300 z-[55]"></div>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        <!-- Services Section -->
+        <section class="py-20 mt-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl lg:text-5xl font-bold text-dark mb-6">Nuestros Servicios</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Soluciones integrales para la prevención y gestión de emergencias</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-primary text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-clipboard-list text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Planes de Emergencia y Contingencia</h3>
+                        <p class="text-white/90 mb-6 leading-relaxed">
+                            Elaborados según normativa y tipo de operación. Protocolos específicos para tu empresa.
+                        </p>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Análisis de riesgos específicos</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Protocolos de evacuación</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Planes de comunicación</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Cumplimiento normativo</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white border-2 border-primary text-primary p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-exclamation-triangle text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Simulacros y Capacitaciones</h3>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Entrenamientos personalizados, prácticos y supervisados para situaciones de emergencia.
+                        </p>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Simulacros de evacuación</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Capacitación en primeros auxilios</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Uso de extintores</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Brigadas de emergencia</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-primary text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-tools text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Asistencia Preventiva en Campo</h3>
+                        <p class="text-white/90 mb-6 leading-relaxed">
+                            Presencia técnica durante eventos o riesgos operativos. Supervisión en tiempo real.
+                        </p>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Supervisión en tiempo real</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Evaluación de riesgos inmediatos</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Respuesta técnica especializada</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Documentación de incidencias</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="bg-white border-2 border-primary text-primary p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-compass text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Diagnóstico de Infraestructura</h3>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Evaluación completa de señalética, rutas de evacuación y puntos de reunión.
+                        </p>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Inspección de señalética</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Mapeo de rutas de escape</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Ubicación de equipos</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Recomendaciones de mejora</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="bg-primary text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-user-md text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Personal de Primera Respuesta</h3>
+                        <p class="text-white/90 mb-6 leading-relaxed">
+                            Equipo capacitado y profesionales especializados para situaciones críticas.
+                        </p>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Paramédicos certificados</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Técnicos en emergencias</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Brigadas especializadas</li>
+                            <li class="flex items-center"><span class="text-yellow-300 mr-3">✓</span> Equipamiento profesional</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="bg-white border-2 border-primary text-primary p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-file-contract text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Cumplimiento Normativo Local</h3>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Asesoría especializada para cumplir con regulaciones de seguridad vigentes.
+                        </p>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Auditorías de cumplimiento</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Documentación legal</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Certificaciones oficiales</li>
+                            <li class="flex items-center"><span class="text-primary mr-3">✓</span> Actualización normativa</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="text-center mt-16">
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-dark mb-4">¿Necesitas una solución personalizada?</h3>
+                        <p class="text-gray-600 mb-6">Contáctanos para una consulta gratuita y cotización personalizada</p>
+                        <a href="contacto.html" class="bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-dark transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
+                            Solicitar Cotización
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex flex-col items-start mb-6">
+                        <div class="flex items-center gap-2 sm:gap-4 lg:gap-8 mb-5">
+                            <img src="logofooter.svg" alt="InnovaPrev Logo" class="w-12 h-12 sm:w-20 sm:h-20 lg:w-32 lg:h-32">
+                            <span class="text-lg sm:text-2xl lg:text-5xl text-orange-700 font-bold footer-text">INNOVA PREV</span>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed text-sm sm:text-lg lg:text-2xl">Protegemos lo que importa</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="sobre-nosotros.html" class="text-gray-300 hover:text-white transition-colors">Sobre Nosotros</a></li>
+                        <li><a href="servicios.html" class="text-white">Servicios</a></li>
+                        <li><a href="contacto.html" class="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Contacto</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-300">
+                            <i class="fas fa-phone mr-3 text-primary"></i> 
+                            +51 950 107 604
+                        </p>
+                        <p class="flex items-center text-gray-300">
+                            <i class="fas fa-envelope mr-3 text-primary"></i> 
+                            innovaprev9@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400">&copy; 2025 InnovaPrev. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script-simple.js"></script>
+</body>
+</html>
