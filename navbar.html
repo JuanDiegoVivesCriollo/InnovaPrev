@@ -1,0 +1,45 @@
+<!-- Navbar -->
+<nav id="navbar" class="fixed top-0 w-full z-40 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+            <div class="flex items-center gap-3">
+                <img src="Diseño sin título.svg" alt="InnovaPrev Logo" class="w-8 h-8 lg:w-10 lg:h-10">
+                <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <ul class="hidden lg:flex items-center space-x-8">
+                <li><a href="index.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Inicio</a></li>
+                <li><a href="sobre-nosotros.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Sobre Nosotros</a></li>
+                <li><a href="servicios.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Servicios</a></li>
+                <li><a href="contacto.html" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium">Contacto</a></li>
+            </ul>
+            
+            <!-- Hamburger Menu -->
+            <button id="hamburger" class="lg:hidden flex flex-col gap-1 p-2" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
+                <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+                <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+                <span class="bar w-6 h-0.5 bg-gray-700 transition-all duration-300" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Sidebar -->
+<div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50 lg:hidden">
+    <div class="flex items-center justify-between p-6 border-b">
+        <span class="text-xl font-bold text-primary">🛡️ INNOVA PREV</span>
+        <button id="close-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <i class="fas fa-times text-gray-600"></i>
+        </button>
+    </div>
+    <ul class="py-6">
+        <li><a href="index.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Inicio</a></li>
+        <li><a href="sobre-nosotros.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Sobre Nosotros</a></li>
+        <li><a href="servicios.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Servicios</a></li>
+        <li><a href="contacto.html" class="sidebar-link block px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">Contacto</a></li>
+    </ul>
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-300 z-40"></div>
