@@ -7,8 +7,13 @@ package.json
 package-lock.json
 tailwind.config.js
 
+# Critical CSS development file (inline in production)
+dist/critical.css
+
 # Development documentation
 OPTIMIZACION.md
+OPTIMIZACION-COMPLETA.md
+DESPLIEGUE.md
 
 # System files
 .DS_Store
