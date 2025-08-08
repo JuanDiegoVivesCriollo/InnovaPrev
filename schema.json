@@ -32,11 +32,11 @@
         "@type": "ImageObject",
         "inLanguage": "es-PE",
         "@id": "https://www.innovaprev.site/#/schema/logo/image/",
-        "url": "https://www.innovaprev.site/logofooter.svg",
-        "contentUrl": "https://www.innovaprev.site/logofooter.svg",
+        "url": "https://www.innovaprev.site/Diseño sin título.svg",
+        "contentUrl": "https://www.innovaprev.site/Diseño sin título.svg",
         "width": 512,
         "height": 512,
-        "caption": "InnovaPrev"
+        "caption": "InnovaPrev Logo"
       },
       "image": {
         "@id": "https://www.innovaprev.site/#/schema/logo/image/"
