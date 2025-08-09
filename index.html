@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InnovaPrev Perú | Seguridad Laboral y Emergencias 24/7</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="Diseño sin título.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <!-- Favicon principal para buscadores (PRIORIDAD) -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <!-- Favicons adicionales -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Logo para buscadores -->
     <meta property="og:image" content="https://www.innovaprev.site/Diseño sin título.svg">
-    <link rel="shortcut icon" href="Diseño sin título.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="Diseñosintítulo.svg" type="image/svg+xml">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="InnovaPrev líder en seguridad laboral Perú. Servicios de emergencias 24/7, prevención de riesgos, capacitación SST y medicina ocupacional para empresas.">
@@ -164,13 +167,23 @@
     <link rel="preload" as="image" href="HeroEmergencia.webp">
     <link rel="preload" as="image" href="Phone-Background-Group-Messaging-Screen-Instagram-Story-_1_.webp">
     <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" crossorigin>
+    <link rel="canonical" href="https://www.innovaprev.site/">
+    <meta name="theme-color" content="#E85A33">
+    <!-- Quitar preload Google Fonts externo y CDN Font Awesome -->
+    <!-- Preloads locales (fuentes + css iconos) -->
+    <link rel="preload" as="style" href="assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="assets/css/fa.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/fonts.css">
+        <link rel="stylesheet" href="assets/css/fa.min.css">
+    </noscript>
+    <!-- Quitar: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/..."> -->
+    <!-- Local Anime (se carga diferido) -->
+    <link rel="preload" href="assets/js/anime.min.js" as="script">
     
     <!-- Load full CSS async after critical -->
     <link rel="preload" as="style" href="dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="dist/output.css"></noscript>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="font-poppins overflow-x-hidden">
     <!-- Loading Screen -->
@@ -183,7 +196,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Seguridad Laboral Perú" title="InnovaPrev - Líder en Seguridad y Emergencias" class="w-12 h-12 sm:w-16 sm:h-16">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Seguridad Laboral Perú" title="InnovaPrev - Líder en Seguridad y Emergencias" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="eager">
                     <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
                 </div>
                 <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
@@ -213,12 +226,24 @@
     <!-- Footer Container -->
     <div id="footer-container"></div>
 
-    <!-- SPA Application Script -->
-    <script src="app.js"></script>
+    <!-- SPA Application Script (defer para no bloquear) -->
+    <script src="app.js" defer></script>
+    <!-- Sustituir CDN anime por local + carga al reposo -->
+    <script>
+      window.addEventListener('load',()=> {
+        requestIdleCallback?.(()=> {
+          const s=document.createElement('script');
+          s.src='assets/js/anime.min.js';s.defer=true;document.head.appendChild(s);
+        });
+      });
+    </script>
+    <!-- Service Worker -->
+    <script>
+      if('serviceWorker' in navigator){
+        window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(console.error));
+      }
+    </script>
 
-    <!-- Additional Scripts -->
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    
     <!-- Error Handling -->
     <script>
         window.onerror = function(msg, url, lineNo, columnNo, error) {

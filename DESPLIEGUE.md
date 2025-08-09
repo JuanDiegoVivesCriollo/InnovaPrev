@@ -55,6 +55,33 @@ git push origin main
     Cache-Control = "public, max-age=31536000"
 ```
 
+### Nuevos Assets Locales (Eliminar CDNs)
+Añade:
+```
+assets/css/fonts.css
+assets/css/fa.min.css
+assets/js/site-common.js
+assets/js/anime.min.js
+assets/fonts/poppins-latin-*.woff2
+sw.js
+```
+
+### Headers de Caché Recomendados
+```toml
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/dist/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+```
+
+### Actualización de SW
+Cuando cambies assets: incrementa versión CACHE_STATIC / CACHE_PAGES en sw.js.
+
 ## 📊 Beneficios del Despliegue Optimizado
 
 ### Antes (CDN):

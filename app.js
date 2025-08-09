@@ -11,18 +11,11 @@ class InnovaApp {
     }
 
     async init() {
-        // Inject navbar and footer
         await this.injectComponents();
-        
-        // Set up navigation
         this.setupNavigation();
-        
-        // Load initial page
         this.loadPage(this.getCurrentPageFromURL());
-        
-        // Setup hamburger menu after navbar injection
         this.setupHamburgerMenu();
-        
+        this.schedulePrefetch(); // prefetch nuevo
         console.log('🛡️ InnovaPrev SPA initialized successfully');
     }
 
@@ -114,7 +107,9 @@ class InnovaApp {
             contentContainer.innerHTML = `
                 <div class="min-h-screen flex items-center justify-center">
                     <div class="text-center text-red-600">
-                        <i class="fas fa-exclamation-triangle text-4xl mb-4"></i>
+                        <div class="mx-auto mb-4" style="width:56px;height:56px;">
+                          <div style="width:56px;height:56px;border:6px solid #fecaca;border-top-color:#dc2626;border-radius:50%;animation:spin 1s linear infinite"></div>
+                        </div>
                         <h2 class="text-2xl font-bold mb-2">Error al cargar la página</h2>
                         <p>Por favor, intente nuevamente.</p>
                         <button onclick="location.reload()" class="mt-4 bg-primary text-white px-6 py-2 rounded-lg">
@@ -392,6 +387,20 @@ class InnovaApp {
                 overlay.addEventListener('click', toggleSidebar);
             }
         }, 100);
+    }
+
+    schedulePrefetch(){
+        const pages=['inicio','sobre-nosotros','servicios','contacto'].filter(p=>p!==this.currentPage);
+        const runner=()=>pages.forEach(p=>this.fetchPageToCache(p));
+        (window.requestIdleCallback||function(cb){setTimeout(cb,500)})(runner);
+    }
+    async fetchPageToCache(page){
+        if(this.cache.has(page)) return;
+        try{
+            let file= page==='inicio'?'inicio.html':`${page}.html`;
+            const content=await this.fetchContent(file);
+            this.cache.set(page,content);
+        }catch(e){console.warn('Prefetch fail',page,e);}
     }
 }
 

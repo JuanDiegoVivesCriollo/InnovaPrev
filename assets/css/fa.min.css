@@ -1,0 +1,40 @@
+/* Subset FontAwesome - incluir sólo iconos usados. Generar woff2 reducido. */
+@font-face {
+  font-family:'FA-Subset';
+  src:url('../fonts/fa-subset.woff2') format('woff2');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+/* Ejemplos de mapeo (unicode asignado en subset) adaptar según exportación */
+.fas {font-family:'FA-Subset';font-weight:400;display:inline-block;line-height:1;}
+.fa-times:before{content:"\e900";}
+.fa-question-circle:before{content:"\e901";}
+.fa-users:before{content:"\e902";}
+.fa-bullseye:before{content:"\e903";}
+.fa-eye:before{content:"\e904";}
+.fa-heart:before{content:"\e905";}
+.fa-clipboard-list:before{content:"\e906";}
+.fa-exclamation-triangle:before{content:"\e907";}
+.fa-tools:before{content:"\e908";}
+.fa-compass:before{content:"\e909";}
+.fa-user-md:before{content:"\e90a";}
+.fa-file-contract:before{content:"\e90b";}
+.fa-industry:before{content:"\e90c";}
+.fa-hard-hat:before{content:"\e90d";}
+.fa-cogs:before{content:"\e90e";}
+.fa-oil-can:before{content:"\e90f";}
+.fa-arrow-right:before{content:"\e910";}
+.fa-phone:before{content:"\e911";}
+.fa-clock:before{content:"\e912";}
+.fa-certificate:before{content:"\e913";}
+.fa-handshake:before{content:"\e914";}
+.fa-graduation-cap:before{content:"\e915";}
+.fa-shopping-cart:before{content:"\e916";}
+.fa-building:before{content:"\e917";}
+.fa-hospital:before{content:"\e918";}
+.fa-hotel:before{content:"\e919";}
+.fa-utensils:before{content:"\e91a";}
+.fa-calendar-alt:before{content:"\e91b";}
+.fa-envelope:before{content:"\e91c";}
+.fa-refresh:before{content:"\e91d";}

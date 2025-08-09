@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios InnovaPrev | Seguridad Laboral Perú</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="Diseño sin título.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <!-- Favicon principal para buscadores -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <!-- Favicons adicionales -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Logo para buscadores -->
-    <link rel="shortcut icon" href="Diseño sin título.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="Diseñosintítulo.svg" type="image/svg+xml">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Servicios de seguridad laboral InnovaPrev: planes de emergencia, capacitación SST, medicina ocupacional y prevención de riesgos en Perú.">
@@ -105,25 +108,18 @@
     <link rel="preload" as="style" href="dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="dist/output.css"></noscript>
     
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://www.innovaprev.site/servicios.html">
+    <meta name="theme-color" content="#E85A33">
+    <link rel="preload" as="style" href="assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="assets/css/fa.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="assets/css/fonts.css">
+      <link rel="stylesheet" href="assets/css/fa.min.css">
+    </noscript>
+    
     <!-- Load JavaScript async -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const hasVisited = sessionStorage.getItem('hasVisitedSite');
-            
-            if (!hasVisited) {
-                sessionStorage.setItem('hasVisitedSite', 'true');
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }, 1500);
-            } else {
-                loadingScreen.style.display = 'none';
-            }
-        });
-    </script>
+    <script src="assets/js/site-common.js" defer></script>
 </head>
 <body class="font-poppins overflow-x-hidden">
     <!-- Loading Spinner -->
@@ -136,7 +132,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Servicios Seguridad" title="InnovaPrev - Servicios Especializados" class="w-12 h-12 sm:w-16 sm:h-16">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Servicios Seguridad" title="InnovaPrev - Servicios Especializados" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="lazy">
                     <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
                 </div>
                 <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
@@ -149,7 +145,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <div class="flex items-center gap-3">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Menu Servicios" title="InnovaPrev - Catálogo de Servicios" class="w-8 h-8 lg:w-10 lg:h-10">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Menu Servicios" title="InnovaPrev - Catálogo de Servicios" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="lazy">
                     <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
                 </div>
                 
@@ -390,8 +386,6 @@
   
 
     <!-- Load JavaScript immediately but non-blocking -->
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    
     <!-- Critical JavaScript inline for immediate functionality -->
     <script>
         // Hamburger Menu Functionality - Critical for UX
@@ -465,6 +459,12 @@
             }
             
             if (overlay) {
+                overlay.addEventListener('click', toggleSidebar);
+            }
+        });
+    </script>
+</body>
+</html>
                 overlay.addEventListener('click', toggleSidebar);
             }
         });

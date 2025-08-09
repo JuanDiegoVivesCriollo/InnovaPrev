@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros | InnovaPrev Empresa Seguridad Laboral Perú</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="Diseño sin título.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <!-- Favicon principal para buscadores -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <!-- Favicons adicionales -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Logo para buscadores -->
-    <link rel="shortcut icon" href="Diseño sin título.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="Diseñosintítulo.svg" type="image/svg+xml">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Conoce InnovaPrev (OSDI), empresa peruana líder en seguridad laboral con +10 años protegiendo empresas. Especialistas en prevención y emergencias.">
@@ -85,108 +88,20 @@
     <link rel="preload" as="style" href="dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="dist/output.css"></noscript>
     
-    <!-- Load JavaScript async -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const hasVisited = sessionStorage.getItem('hasVisitedSite');
-            
-            if (!hasVisited) {
-                sessionStorage.setItem('hasVisitedSite', 'true');
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }, 1500);
-            } else {
-                loadingScreen.style.display = 'none';
-            }
-            
-            // Hamburger menu functionality - inline for immediate availability
-            const hamburger = document.getElementById('hamburger');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const closeBtn = document.getElementById('close-btn');
-            let sidebarOpen = false;
-
-            function toggleSidebar() {
-                if (sidebarOpen) {
-                    // Close sidebar
-                    if (sidebar) {
-                        sidebar.classList.remove('translate-x-0');
-                        sidebar.classList.add('translate-x-full');
-                    }
-                    if (overlay) {
-                        overlay.classList.remove('opacity-100', 'visible');
-                        overlay.classList.add('opacity-0', 'invisible');
-                    }
-                    document.body.style.overflow = '';
-                    
-                    // Reset hamburger
-                    if (hamburger) {
-                        const bars = hamburger.querySelectorAll('.bar');
-                        if (bars.length >= 3) {
-                            bars[0].style.transform = '';
-                            bars[1].style.opacity = '1';
-                            bars[2].style.transform = '';
-                        }
-                    }
-                    sidebarOpen = false;
-                } else {
-                    // Open sidebar
-                    if (sidebar) {
-                        sidebar.classList.remove('translate-x-full');
-                        sidebar.classList.add('translate-x-0');
-                    }
-                    if (overlay) {
-                        overlay.classList.remove('invisible', 'opacity-0');
-                        overlay.classList.add('opacity-100', 'visible');
-                    }
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Animate hamburger to X
-                    if (hamburger) {
-                        const bars = hamburger.querySelectorAll('.bar');
-                        if (bars.length >= 3) {
-                            bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                            bars[1].style.opacity = '0';
-                            bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                        }
-                    }
-                    sidebarOpen = true;
-                }
-                
-                // Update aria-expanded
-                if (hamburger) {
-                    hamburger.setAttribute('aria-expanded', sidebarOpen ? 'true' : 'false');
-                }
-            }
-
-            // Event listeners
-            if (hamburger) {
-                hamburger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleSidebar();
-                });
-            }
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (sidebarOpen) toggleSidebar();
-                });
-            }
-            
-            if (overlay) {
-                overlay.addEventListener('click', function(e) {
-                    if (sidebarOpen) toggleSidebar();
-                });
-            }
-        });
-    </script>
+    <!-- Canonical and Theme Color -->
+    <link rel="canonical" href="https://www.innovaprev.site/sobre-nosotros.html">
+    <meta name="theme-color" content="#E85A33">
+    
+    <!-- Preload Fonts and Icons -->
+    <link rel="preload" as="style" href="assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="assets/css/fa.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="assets/css/fonts.css">
+      <link rel="stylesheet" href="assets/css/fa.min.css">
+    </noscript>
+    
+    <!-- JavaScript -->
+    <script src="assets/js/site-common.js" defer></script>
 </head>
 <body class="font-poppins overflow-x-hidden">
     <!-- Loading Spinner -->
@@ -199,7 +114,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Empresa Seguridad" title="InnovaPrev - Historia y Compromiso" class="w-12 h-12 sm:w-16 sm:h-16">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Empresa Seguridad" title="InnovaPrev - Historia y Compromiso" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="lazy">
                     <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
                 </div>
                 <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
@@ -212,7 +127,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <div class="flex items-center gap-3">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Navegación" title="InnovaPrev - Sobre Nosotros" class="w-8 h-8 lg:w-10 lg:h-10">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Navegación" title="InnovaPrev - Sobre Nosotros" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="lazy">
                     <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
                 </div>
                 
@@ -272,6 +187,91 @@
                             En InnovaPrev trabajamos para crear ambientes laborales más seguros en Perú, brindando soluciones 
                             integrales de prevención de riesgos, capacitación especializada en SST, medicina ocupacional y 
                             servicios de emergencia 24/7. Nuestro compromiso es proteger lo que más importa: la vida y bienestar 
+                            de los trabajadores peruanos.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 mb-20">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-primary/10 p-4 rounded-full mr-4">
+                                <i class="fas fa-question-circle text-2xl text-primary"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dark">¿Qué Hacemos en InnovaPrev?</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Somos OSDI Consultoría Capacitación y Prevención S.A.C., empresa peruana especializada en seguridad 
+                            laboral y gestión de emergencias. Brindamos servicios integrales que incluyen evaluación de riesgos, 
+                            planes de emergencia, capacitación SST, medicina ocupacional, auditorías de seguridad y consultoría 
+                            especializada en prevención de riesgos laborales.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Nuestros profesionales certificados ayudan a empresas de todos los sectores a crear ambientes laborales 
+                            más seguros, cumplir con la normativa peruana de seguridad y salud en el trabajo, y estar preparadas 
+                            ante cualquier situación de emergencia.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-primary/10 p-4 rounded-full mr-4">
+                                <i class="fas fa-users text-2xl text-primary"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-dark">¿Quiénes Somos?</h2>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Un equipo técnico experto en seguridad, comprometido con una visión proactiva.
+                            En InnovaPrev convertimos la prevención en cultura empresarial a través de 
+                            planificación estratégica y ejecución profesional.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mission, Vision, Values -->
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="bg-primary text-white p-8 rounded-2xl shadow-xl text-center">
+                        <div class="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-bullseye text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Misión</h3>
+                        <p class="text-white/90 leading-relaxed">
+                            Proporcionar soluciones integrales en prevención y gestión de emergencias, 
+                            protegiendo vidas y patrimonio a través de la excelencia técnica.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white border-2 border-primary text-primary p-8 rounded-2xl shadow-xl text-center">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-eye text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Visión</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Ser la empresa líder en prevención de riesgos en Perú, reconocida por 
+                            nuestra innovación y compromiso con la seguridad integral.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-primary text-white p-8 rounded-2xl shadow-xl text-center">
+                        <div class="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-heart text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Valores</h3>
+                        <p class="text-white/90 leading-relaxed">
+                            Compromiso, integridad, excelencia técnica, innovación continua y 
+                            responsabilidad social en cada proyecto que realizamos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+
+    <!-- Load remaining JavaScript for animations -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</body>
+</html>
                             de los trabajadores peruanos.
                         </p>
                     </div>

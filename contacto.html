@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto InnovaPrev | Emergencias 24/7 Lima Perú</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="Diseño sin título.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <!-- Favicon principal para buscadores -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <!-- Favicons adicionales -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
@@ -84,24 +87,7 @@
     <noscript><link rel="stylesheet" href="dist/output.css"></noscript>
     
     <!-- Load JavaScript async -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const hasVisited = sessionStorage.getItem('hasVisitedSite');
-            
-            if (!hasVisited) {
-                sessionStorage.setItem('hasVisitedSite', 'true');
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }, 1500);
-            } else {
-                loadingScreen.style.display = 'none';
-            }
-        });
-    </script>
+    <script src="assets/js/site-common.js" defer></script>
 </head>
 <body class="font-poppins overflow-x-hidden">
     <!-- Loading Spinner -->
@@ -114,7 +100,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Contacto Seguridad" title="Contacto InnovaPrev - Emergencias 24/7" class="w-12 h-12 sm:w-16 sm:h-16">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Contacto Seguridad" title="Contacto InnovaPrev - Emergencias 24/7" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="lazy">
                     <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
                 </div>
                 <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
@@ -127,7 +113,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <div class="flex items-center gap-3">
-                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Seguridad Laboral" title="InnovaPrev - Consultoría en Seguridad" class="w-8 h-8 lg:w-10 lg:h-10">
+                    <img src="Diseño sin título.svg" alt="InnovaPrev Logo Seguridad Laboral" title="InnovaPrev - Consultoría en Seguridad" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="lazy">
                     <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
                 </div>
                 
@@ -486,6 +472,20 @@
                 btnText.classList.remove('hidden');
                 btnLoading.classList.add('hidden');
                 btn.disabled = false;
+                
+                // Show success message
+                successMsg.classList.remove('hidden');
+                
+                // Reset form
+                this.reset();
+                
+                // Scroll to success message
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
                 
                 // Show success message
                 successMsg.classList.remove('hidden');

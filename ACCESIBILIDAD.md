@@ -85,6 +85,11 @@
 }
 ```
 
+## 🌍 **RENDIMIENTO + ACCESIBILIDAD**
+
+- Fuentes locales reducen latencia y eliminan bloqueos de terceros.
+- `font-display: swap` evita texto invisible (FOIT).
+
 ## 🎯 **RESULTADOS ESPERADOS**
 
 ### **Antes vs Después:**

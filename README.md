@@ -144,6 +144,15 @@ Las animaciones se pueden personalizar en `script.js` modificando los parámetro
 - [ ] Certificaciones y acreditaciones
 - [ ] Testimonios de clientes
 
+## 🔧 Optimización Adicional (2025)
+- Fuentes Poppins autohospedadas (fonts.css) con subset WOFF2 + font-display:swap.
+- Eliminado CDN de Font Awesome / Anime.js → versiones locales (fa.min.css, anime.min.js).
+- Preload estratégico: CSS crítico, fuentes e imágenes LCP.
+- Prefetch en reposo de páginas internas (SPA) con requestIdleCallback.
+- Service Worker (sw.js) cache-first para assets estáticos y SWR para páginas HTML.
+- Consolidación de scripts repetidos en assets/js/site-common.js.
+- Lazy loading imágenes no críticas + width/height para evitar CLS.
+
 ---
 
 **Desarrollado para InnovaPrev** - Empresa especializada en prevención y gestión de emergencias, parte del grupo OSDI.
