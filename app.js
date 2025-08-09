@@ -27,31 +27,16 @@ class InnovaApp {
 
     async injectComponents() {
         try {
-            // Try content folder first, fallback to root
-            let navbarHtml, footerHtml;
-            
-            try {
-                const navbarResponse = await fetch('navbar.html');
-                navbarHtml = await navbarResponse.text();
-            } catch {
-                // Fallback to content folder
-                const navbarResponse = await fetch('content/navbar.html');
-                navbarHtml = await navbarResponse.text();
-            }
-            
-            try {
-                const footerResponse = await fetch('footer.html');
-                footerHtml = await footerResponse.text();
-            } catch {
-                // Fallback to content folder
-                const footerResponse = await fetch('content/footer.html');
-                footerHtml = await footerResponse.text();
-            }
-
+            // Siempre cargar desde la carpeta content/
+            const navbarResponse = await fetch('content/navbar.html');
+            const navbarHtml = await navbarResponse.text();
             document.getElementById('navbar-container').innerHTML = navbarHtml;
-            document.getElementById('footer-container').innerHTML = footerHtml;
-            this.componentsLoaded = true;
 
+            const footerResponse = await fetch('content/footer.html');
+            const footerHtml = await footerResponse.text();
+            document.getElementById('footer-container').innerHTML = footerHtml;
+
+            this.componentsLoaded = true;
         } catch (error) {
             console.error('Error injecting components:', error);
             // Keep default navbar/footer if injection fails
@@ -446,6 +431,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const hasVisited = sessionStorage.getItem('hasVisitedSite');
     
     if (!hasVisited) {
+        sessionStorage.setItem('hasVisitedSite', 'true');
+        setTimeout(() => {
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        }, 1500);
+    } else {
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+    }
+});
         sessionStorage.setItem('hasVisitedSite', 'true');
         setTimeout(() => {
             if (loadingScreen) {
