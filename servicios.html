@@ -35,47 +35,46 @@
     <meta property="og:url" content="https://www.innovaprev.site/servicios.html">
     <meta property="og:image" content="https://www.innovaprev.site/Diseñosintítulo.svg">
     
-    <!-- Services Schema -->
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://www.innovaprev.site/servicios.html">
+    <link rel="alternate" hreflang="es-pe" href="https://www.innovaprev.site/servicios.html">
+    <link rel="alternate" hreflang="es" href="https://www.innovaprev.site/servicios.html">
+    <meta property="og:updated_time" content="2025-08-09T00:00:00Z">
+    <meta name="last-modified" content="2025-08-09">
+    
+    <!-- Breadcrumb + FAQ Schema -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "InnovaPrev - OSDI S.A.C."
-      },
-      "serviceType": "Seguridad y Salud en el Trabajo",
-      "description": "Servicios integrales de seguridad laboral, prevención de riesgos y gestión de emergencias",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Servicios de Seguridad Laboral",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Evaluación de Riesgos Laborales",
-              "description": "Identificación, evaluación y control de riesgos en el lugar de trabajo"
+      "@context":"https://schema.org",
+      "@graph":[
+        {
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.innovaprev.site/"},
+            {"@type":"ListItem","position":2,"name":"Servicios","item":"https://www.innovaprev.site/servicios.html"}
+          ]
+        },
+        {
+          "@type":"FAQPage",
+          "mainEntity":[
+            {
+              "@type":"Question",
+              "name":"¿Qué incluye un plan de emergencia corporativo?",
+              "acceptedAnswer":{"@type":"Answer","text":"Análisis de riesgos, protocolos de evacuación, roles de brigadas, comunicaciones y simulacros programados."}
+            },
+            {
+              "@type":"Question",
+              "name":"¿Ofrecen capacitación certificada en SST?",
+              "acceptedAnswer":{"@type":"Answer","text":"Sí, capacitaciones alineadas a normativa peruana, con emisión de constancias y registro de asistencia."}
+            },
+            {
+              "@type":"Question",
+              "name":"¿Cubren emergencias 24/7?",
+              "acceptedAnswer":{"@type":"Answer","text":"Disponibilidad permanente para asistencia técnica y primera respuesta en todo el Perú."}
             }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Planes de Emergencia y Contingencia",
-              "description": "Desarrollo e implementación de planes para gestión de crisis"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Capacitación en SST",
-              "description": "Formación especializada en Seguridad y Salud en el Trabajo"
-            }
-          }
-        ]
-      }
+          ]
+        }
+      ]
     }
     </script>
     
@@ -108,8 +107,6 @@
     <link rel="preload" as="style" href="dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="dist/output.css"></noscript>
     
-    <!-- Canonical Link -->
-    <link rel="canonical" href="https://www.innovaprev.site/servicios.html">
     <meta name="theme-color" content="#E85A33">
     <link rel="preload" as="style" href="assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" as="style" href="assets/css/fa.min.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -132,7 +129,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Servicios Seguridad" title="InnovaPrev - Servicios Especializados" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="lazy">
+                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Servicios Seguridad" title="InnovaPrev - Servicios Especializados" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="eager">
                     <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
                 </div>
                 <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
@@ -145,7 +142,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <div class="flex items-center gap-3">
-                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Menu Servicios" title="InnovaPrev - Catálogo de Servicios" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="lazy">
+                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Menu Servicios" title="InnovaPrev - Catálogo de Servicios" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="eager">
                     <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
                 </div>
                 
@@ -462,6 +459,9 @@
                 overlay.addEventListener('click', toggleSidebar);
             }
         });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>

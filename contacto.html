@@ -18,7 +18,14 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Logo para buscadores -->
+    <!-- Canonical and hreflang -->
+    <link rel="canonical" href="https://www.innovaprev.site/contacto.html">
+    <link rel="alternate" hreflang="es-pe" href="https://www.innovaprev.site/contacto.html">
+    <link rel="alternate" hreflang="es" href="https://www.innovaprev.site/contacto.html">
+    <meta property="og:updated_time" content="2025-08-09T00:00:00Z">
+    <meta name="last-modified" content="2025-08-09">
+    
+    <!-- Logo para buscadores - CORREGIDO -->
     <link rel="shortcut icon" href="Diseñosintítulo.svg" type="image/svg+xml">
     
     <!-- SEO Meta Tags -->
@@ -34,6 +41,18 @@
     <meta property="og:description" content="Contacta con nuestros especialistas en seguridad laboral y prevención. Atención 24/7 para emergencias. Lima, Perú.">
     <meta property="og:url" content="https://www.innovaprev.site/contacto.html">
     <meta property="og:image" content="https://www.innovaprev.site/Diseñosintítulo.svg">
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.innovaprev.site/"},
+        {"@type":"ListItem","position":2,"name":"Contacto","item":"https://www.innovaprev.site/contacto.html"}
+      ]
+    }
+    </script>
     
     <!-- Business Contact Schema -->
     <script type="application/ld+json">
@@ -100,7 +119,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Contacto Seguridad" title="Contacto InnovaPrev - Emergencias 24/7" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="lazy">
+                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Contacto Seguridad" title="Contacto InnovaPrev - Emergencias 24/7" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="eager">
                     <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
                 </div>
                 <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
@@ -113,7 +132,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <div class="flex items-center gap-3">
-                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Seguridad Laboral" title="InnovaPrev - Consultoría en Seguridad" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="lazy">
+                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Seguridad Laboral" title="InnovaPrev - Consultoría en Seguridad" class="w-8 h-8 lg:w-10 lg:h-10" width="40" height="40" loading="eager">
                     <span class="text-xl lg:text-2xl font-bold text-primary">INNOVA PREV</span>
                 </div>
                 
@@ -472,20 +491,6 @@
                 btnText.classList.remove('hidden');
                 btnLoading.classList.add('hidden');
                 btn.disabled = false;
-                
-                // Show success message
-                successMsg.classList.remove('hidden');
-                
-                // Reset form
-                this.reset();
-                
-                // Scroll to success message
-                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 2000);
-        });
-    </script>
-</body>
-</html>
                 
                 // Show success message
                 successMsg.classList.remove('hidden');
