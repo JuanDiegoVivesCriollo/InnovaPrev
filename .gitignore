@@ -13,7 +13,7 @@ yarn.lock
 # ===========================
 # Build outputs
 # ===========================
-dist/
+# dist/  # Commenting out dist/ so Tailwind CSS can be deployed
 build/
 .cache/
 
