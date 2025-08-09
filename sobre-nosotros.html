@@ -1,333 +1,424 @@
-<!-- Main Content -->
-<main class="min-h-screen">
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, rgba(232, 90, 51, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%), url('/sobre-nosotros.webp') center/cover no-repeat;">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-white space-y-8">
-                    <div class="inline-flex items-center bg-primary/20 backdrop-blur rounded-full px-6 py-3 border border-primary/30">
-                        <i class="fa-solid fa-shield-halved text-primary mr-3"></i>
-                        <span class="text-white font-semibold">Sobre Nosotros</span>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta básico -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - INNOVA PREV</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Conoce a InnovaPrev, líderes en seguridad laboral y prevención de riesgos en Perú. +10 años de experiencia protegiendo empresas.">
+    <meta name="keywords" content="sobre innovaprev, empresa seguridad laboral, historia innovaprev, equipo profesional">
+    <meta name="author" content="OSDI Consultoría Capacitación y Prevención S.A.C.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sobre Nosotros - InnovaPrev">
+    <meta property="og:description" content="Conoce a InnovaPrev, líderes en seguridad laboral y prevención de riesgos en Perú.">
+    <meta property="og:url" content="https://www.innovaprev.site/sobre-nosotros.html">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/dist/output.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    
+    <meta name="theme-color" content="#E85A33">
+</head>
+<body class="font-poppins overflow-x-hidden">
+    
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        <!-- About Hero Section -->
+        <section class="py-20 mt-20 bg-gradient-to-br from-primary/10 to-blue-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-primary/20 rounded-full px-6 py-3 mb-6">
+                        <i class="fa-solid fa-users text-primary mr-3"></i>
+                        <span class="text-primary font-semibold">Sobre Nosotros</span>
                     </div>
-                    
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                        <span class="text-white">Más de</span>
-                        <span class="text-primary block">10 años</span>
-                        <span class="text-white">protegiendo empresas</span>
+
+                    <h1 class="text-4xl lg:text-5xl font-bold text-dark mb-6">
+                        <span class="text-primary">Protegemos</span> lo que más importa
                     </h1>
-                    
-                    <p class="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-2xl">
-                        <strong class="text-primary">OSDI Consultoría Capacitación y Prevención S.A.C.</strong>, conocida comercialmente como 
-                        <strong class="text-primary">InnovaPrev</strong>, es una empresa peruana líder en servicios 
-                        de seguridad laboral, prevención de riesgos y gestión de emergencias.
+
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                        Somos InnovaPrev, especialistas en seguridad laboral y prevención de riesgos con más de 10 años de experiencia
+                        protegiendo empresas en todo el Perú.
                     </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#servicios" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
-                            <i class="fa-solid fa-rocket mr-3"></i>
-                            Nuestros Servicios
-                        </a>
-                        <a href="#contacto" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
-                            <i class="fa-solid fa-envelope mr-3"></i>
-                            Contáctanos
-                        </a>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                        <div class="text-3xl font-bold text-primary mb-2">+500</div>
+                        <p class="text-gray-600">Empresas Atendidas</p>
                     </div>
-                    
-                    <div class="flex items-center gap-6 text-sm">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-check-circle text-green-400"></i>
-                            <span>Empresa certificada</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-check-circle text-green-400"></i>
-                            <span>RUC: 20607637671</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-check-circle text-green-400"></i>
-                            <span>Fundada en 2014</span>
-                        </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                        <div class="text-3xl font-bold text-primary mb-2">24/7</div>
+                        <p class="text-gray-600">Atención Continua</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                        <div class="text-3xl font-bold text-primary mb-2">15+</div>
+                        <p class="text-gray-600">Años Experiencia</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                        <div class="text-3xl font-bold text-primary mb-2">100%</div>
+                        <p class="text-gray-600">Certificados</p>
                     </div>
                 </div>
-                
-                <div class="relative">
-                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20 transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                        <div class="bg-primary/20 backdrop-blur rounded-xl p-6 mb-6 border border-primary/30">
-                            <h3 class="text-2xl font-bold text-white mb-4">OSDI S.A.C.</h3>
-                            <div class="space-y-2 text-gray-200">
-                                <p><strong className="text-primary">RUC:</strong> 20607637671</p>
-                                <p><strong className="text-primary">Razón Social:</strong> OSDI Consultoría Capacitación y Prevención S.A.C.</p>
-                                <p><strong className="text-primary">Nombre Comercial:</strong> InnovaPrev</p>
-                                <p><strong className="text-primary">Fundación:</strong> 2014</p>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- Mission -->
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-bullseye text-white text-xl"></i>
                             </div>
+                            <h2 class="text-3xl font-bold text-dark">Nuestra Misión</h2>
                         </div>
                         
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-primary">10+</div>
-                                <p class="text-sm text-gray-200">Años de Experiencia</p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Proteger la vida e integridad de los trabajadores mediante servicios innovadores de 
+                            prevención de riesgos y seguridad laboral, contribuyendo al desarrollo sostenible de 
+                            las empresas peruanas con soluciones personalizadas y tecnología de vanguardia.
+                        </p>
+
+                        <div class="bg-primary/5 rounded-xl p-6 border-l-4 border-primary">
+                            <h4 class="font-bold text-dark mb-2">Compromiso con la Excelencia</h4>
+                            <p class="text-gray-600">
+                                Cada proyecto es una oportunidad para demostrar nuestro compromiso con la calidad, 
+                                la innovación y la seguridad de nuestros clientes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Vision -->
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-eye text-white text-xl"></i>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-primary">500+</div>
-                                <p class="text-sm text-gray-200">Empresas Atendidas</p>
+                            <h2 class="text-3xl font-bold text-dark">Nuestra Visión</h2>
+                        </div>
+                        
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Ser la empresa líder en Latinoamérica en servicios integrales de prevención de riesgos 
+                            y seguridad laboral, reconocida por nuestra innovación tecnológica, excelencia operacional 
+                            y impacto positivo en la cultura de seguridad empresarial.
+                        </p>
+
+                        <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-600">
+                            <h4 class="font-bold text-dark mb-2">Futuro Sostenible</h4>
+                            <p class="text-gray-600">
+                                Trabajamos hoy para construir un mañana donde cada trabajador regrese seguro a casa, 
+                                y cada empresa opere con los más altos estándares de seguridad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-dark mb-6">Nuestros Valores</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Los principios que guían cada una de nuestras acciones y decisiones empresariales
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Value 1 -->
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-shield-halved text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-dark mb-4">Seguridad Primero</h4>
+                        <p class="text-gray-600">
+                            La seguridad no es negociable. Es nuestro compromiso inquebrantable con cada cliente 
+                            y cada trabajador que protegemos.
+                        </p>
+                    </div>
+
+                    <!-- Value 2 -->
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-lightbulb text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-dark mb-4">Innovación</h4>
+                        <p class="text-gray-600">
+                            Adoptamos tecnología de vanguardia y metodologías innovadoras para ofrecer 
+                            soluciones más efectivas y eficientes.
+                        </p>
+                    </div>
+
+                    <!-- Value 3 -->
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-handshake text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-dark mb-4">Confianza</h4>
+                        <p class="text-gray-600">
+                            Construimos relaciones duraderas basadas en la transparencia, honestidad 
+                            y cumplimiento de nuestros compromisos.
+                        </p>
+                    </div>
+
+                    <!-- Value 4 -->
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-medal text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-dark mb-4">Excelencia</h4>
+                        <p class="text-gray-600">
+                            Buscamos la perfección en cada servicio, superando las expectativas de nuestros 
+                            clientes en cada proyecto.
+                        </p>
+                    </div>
+
+                    <!-- Value 5 -->
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-users text-orange-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-dark mb-4">Trabajo en Equipo</h4>
+                        <p class="text-gray-600">
+                            Colaboramos estrechamente con nuestros clientes y entre nosotros para 
+                            alcanzar objetivos comunes de seguridad.
+                        </p>
+                    </div>
+
+                    <!-- Value 6 -->
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-heart text-red-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-dark mb-4">Responsabilidad Social</h4>
+                        <p class="text-gray-600">
+                            Contribuimos al bienestar de las comunidades donde operamos, 
+                            promoviendo una cultura de seguridad y prevención.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-dark mb-6">Nuestro Equipo</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Profesionales certificados y especializados comprometidos con tu seguridad
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Team Overview -->
+                    <div class="lg:col-span-3">
+                        <div class="bg-gray-50 rounded-2xl p-8">
+                            <div class="grid md:grid-cols-3 gap-8 text-center">
+                                <div>
+                                    <div class="text-4xl font-bold text-primary mb-2">25+</div>
+                                    <p class="text-gray-600 font-semibold">Profesionales Certificados</p>
+                                    <p class="text-sm text-gray-500 mt-2">Ingenieros, médicos ocupacionales, especialistas SST</p>
+                                </div>
+                                <div>
+                                    <div class="text-4xl font-bold text-primary mb-2">100%</div>
+                                    <p class="text-gray-600 font-semibold">Personal Capacitado</p>
+                                    <p class="text-sm text-gray-500 mt-2">Actualizaciones constantes en normativas</p>
+                                </div>
+                                <div>
+                                    <div class="text-4xl font-bold text-primary mb-2">24/7</div>
+                                    <p class="text-gray-600 font-semibold">Disponibilidad</p>
+                                    <p class="text-sm text-gray-500 mt-2">Equipo de emergencias siempre listo</p>
+                                </div>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-primary">24/7</div>
-                                <p class="text-sm text-gray-200">Disponibilidad</p>
+                        </div>
+                    </div>
+
+                    <!-- Expertise Areas -->
+                    <div class="lg:col-span-3">
+                        <h3 class="text-2xl font-bold text-dark mb-8 text-center">Áreas de Especialización</h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-primary/5 rounded-xl p-6 text-center border border-primary/10">
+                                <i class="fa-solid fa-user-tie text-primary text-3xl mb-4"></i>
+                                <h4 class="font-bold text-dark mb-2">Ingenieros SST</h4>
+                                <p class="text-gray-600 text-sm">Especialistas certificados en seguridad y salud ocupacional</p>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-primary">100%</div>
-                                <p class="text-sm text-gray-200">Compromiso</p>
+                            
+                            <div class="bg-blue-50 rounded-xl p-6 text-center border border-blue-200">
+                                <i class="fa-solid fa-user-doctor text-blue-600 text-3xl mb-4"></i>
+                                <h4 class="font-bold text-dark mb-2">Médicos Ocupacionales</h4>
+                                <p class="text-gray-600 text-sm">Profesionales en medicina del trabajo y salud ocupacional</p>
+                            </div>
+                            
+                            <div class="bg-green-50 rounded-xl p-6 text-center border border-green-200">
+                                <i class="fa-solid fa-fire text-green-600 text-3xl mb-4"></i>
+                                <h4 class="font-bold text-dark mb-2">Especialistas en Emergencias</h4>
+                                <p class="text-gray-600 text-sm">Expertos en manejo de crisis y primeros auxilios</p>
+                            </div>
+                            
+                            <div class="bg-purple-50 rounded-xl p-6 text-center border border-purple-200">
+                                <i class="fa-solid fa-clipboard-check text-purple-600 text-3xl mb-4"></i>
+                                <h4 class="font-bold text-dark mb-2">Auditores SST</h4>
+                                <p class="text-gray-600 text-sm">Certificados en auditorías y cumplimiento normativo</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Mission Vision Values -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-dark mb-6">Nuestra Esencia</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Los pilares que guían nuestro trabajo diario y definen nuestro compromiso con la seguridad laboral</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Mission -->
-                <div class="bg-primary text-white rounded-2xl p-8 transform hover:-translate-y-2 transition-all duration-300 shadow-xl">
-                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-bullseye text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Misión</h3>
-                    <p class="text-white/90 leading-relaxed">
-                        Brindar servicios especializados en seguridad laboral, prevención de riesgos y gestión de emergencias, 
-                        protegiendo la vida y bienestar de los trabajadores peruanos a través de soluciones innovadoras y 
-                        personal altamente calificado.
+        <!-- Certifications -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-dark mb-6">Certificaciones y Reconocimientos</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Nuestras credenciales respaldan la calidad y profesionalismo de nuestros servicios
                     </p>
                 </div>
 
-                <!-- Vision -->
-                <div class="bg-white border-2 border-primary rounded-2xl p-8 transform hover:-translate-y-2 transition-all duration-300 shadow-xl">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-eye text-primary text-2xl"></i>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Certification 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-certificate text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-dark mb-2">ISO 45001:2018</h4>
+                        <p class="text-gray-600 text-sm">Sistema de Gestión de Seguridad y Salud en el Trabajo</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-primary mb-4">Visión</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Ser reconocidos como la empresa líder en seguridad laboral en Perú, expandiendo nuestros servicios 
-                        a nivel nacional e internacional, estableciendo nuevos estándares de excelencia en prevención de 
-                        riesgos y gestión de emergencias.
-                    </p>
-                </div>
 
-                <!-- Values -->
-                <div class="bg-gray-900 text-white rounded-2xl p-8 transform hover:-translate-y-2 transition-all duration-300 shadow-xl">
-                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-heart text-primary text-2xl"></i>
+                    <!-- Certification 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-building text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-dark mb-2">CIP - Colegio de Ingenieros</h4>
+                        <p class="text-gray-600 text-sm">Ingenieros colegiados y habilitados</p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Valores</h3>
-                    <ul class="space-y-3 text-white/90">
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-check-circle text-primary mr-3"></i>
-                            <span><strong>Integridad:</strong> Honestidad en cada acción</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-check-circle text-primary mr-3"></i>
-                            <span><strong>Excelencia:</strong> Calidad superior siempre</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-check-circle text-primary mr-3"></i>
-                            <span><strong>Compromiso:</strong> Dedicación total al cliente</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-check-circle text-primary mr-3"></i>
-                            <span><strong>Innovación:</strong> Soluciones creativas</span>
-                        </li>
-                    </ul>
+
+                    <!-- Certification 3 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-heart-pulse text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-dark mb-2">MINSA</h4>
+                        <p class="text-gray-600 text-sm">Certificación del Ministerio de Salud</p>
+                    </div>
+
+                    <!-- Certification 4 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-globe text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-dark mb-2">Certificaciones Internacionales</h4>
+                        <p class="text-gray-600 text-sm">OSHA, NEBOSH y otras certificaciones globales</p>
+                    </div>
+
+                    <!-- Certification 5 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-award text-orange-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-dark mb-2">Reconocimientos</h4>
+                        <p class="text-gray-600 text-sm">Premios por excelencia en prevención de riesgos</p>
+                    </div>
+
+                    <!-- Certification 6 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-handshake text-red-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-dark mb-2">Alianzas Estratégicas</h4>
+                        <p class="text-gray-600 text-sm">Partnerships con organizaciones líderes del sector</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Why Choose Us -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-dark mb-6">¿Por qué elegir InnovaPrev?</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Nuestras fortalezas y diferenciadores que nos han convertido en líderes del sector</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Experience -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-medal text-primary text-xl"></i>
+        <!-- Company Legal Info -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-50 rounded-2xl p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-dark mb-4">OSDI Consultoría Capacitación y Prevención S.A.C.</h3>
+                        <p class="text-gray-600">Nombre comercial: <strong>InnovaPrev</strong></p>
                     </div>
-                    <h4 class="text-xl font-bold text-dark mb-3">Experiencia Comprobada</h4>
-                    <p class="text-gray-600">Más de 10 años en el mercado peruano, atendiendo empresas de todos los sectores con resultados exitosos.</p>
-                </div>
 
-                <!-- Team -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-users-gear text-primary text-xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-dark mb-3">Equipo Especializado</h4>
-                    <p class="text-gray-600">Profesionales certificados en seguridad industrial, medicina ocupacional y gestión de emergencias.</p>
-                </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <i class="fa-solid fa-building text-primary text-2xl mb-3"></i>
+                            <h4 class="font-bold text-dark mb-2">RUC</h4>
+                            <p class="text-gray-600">20607637671</p>
+                        </div>
 
-                <!-- Coverage -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-map-location-dot text-primary text-xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-dark mb-3">Cobertura Nacional</h4>
-                    <p class="text-gray-600">Servicios disponibles en todas las regiones del Perú con personal capacitado localmente.</p>
-                </div>
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <i class="fa-solid fa-calendar text-blue-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-dark mb-2">Fundación</h4>
+                            <p class="text-gray-600">2009</p>
+                        </div>
 
-                <!-- Response -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-clock text-primary text-xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-dark mb-3">Respuesta Rápida</h4>
-                    <p class="text-gray-600">Atención 24/7 con tiempos de respuesta menores a 30 minutos en emergencias críticas.</p>
-                </div>
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <i class="fa-solid fa-map text-green-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-dark mb-2">Cobertura</h4>
+                            <p class="text-gray-600">Nacional - Todo el Perú</p>
+                        </div>
 
-                <!-- Technology -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-laptop text-primary text-xl"></i>
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <i class="fa-solid fa-industry text-purple-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-dark mb-2">Sectores</h4>
+                            <p class="text-gray-600">Todos los rubros industriales</p>
+                        </div>
                     </div>
-                    <h4 class="text-xl font-bold text-dark mb-3">Tecnología Avanzada</h4>
-                    <p class="text-gray-600">Utilizamos herramientas tecnológicas de última generación para monitoreo y gestión de la seguridad.</p>
-                </div>
-
-                <!-- Customization -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-puzzle-piece text-primary text-xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-dark mb-3">Soluciones Personalizadas</h4>
-                    <p class="text-gray-600">Adaptamos nuestros servicios a las necesidades específicas de cada cliente y sector industrial.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Certifications -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-dark mb-6">Certificaciones y Reconocimientos</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Nuestro compromiso con la excelencia está respaldado por certificaciones y reconocimientos del sector</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center group">
-                    <div class="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                        <i class="fa-solid fa-certificate text-primary group-hover:text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-semibold text-dark mb-2">ISO 45001</h4>
-                    <p class="text-sm text-gray-600">Sistema de Gestión de SST</p>
-                </div>
-                
-                <div class="text-center group">
-                    <div class="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                        <i class="fa-solid fa-award text-primary group-hover:text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-semibold text-dark mb-2">SUNAFIL</h4>
-                    <p class="text-sm text-gray-600">Registrado en SUNAFIL</p>
-                </div>
-                
-                <div class="text-center group">
-                    <div class="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                        <i class="fa-solid fa-shield-halved text-primary group-hover:text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-semibold text-dark mb-2">MINSA</h4>
-                    <p class="text-sm text-gray-600">Servicios de Salud Ocupacional</p>
-                </div>
-                
-                <div class="text-center group">
-                    <div class="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                        <i class="fa-solid fa-handshake text-primary group-hover:text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-semibold text-dark mb-2">CAPECO</h4>
-                    <p class="text-sm text-gray-600">Miembro Activo</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- CTA Section -->
+        <section class="py-20 bg-primary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-white mb-6">¿Quieres formar parte de nuestro éxito?</h2>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Únete a más de 500 empresas que ya confían en InnovaPrev para proteger a sus trabajadores.
+                </p>
 
-    <!-- Team Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-dark mb-6">Nuestro Equipo</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Profesionales altamente capacitados y comprometidos con la seguridad laboral</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa-solid fa-user-tie text-primary text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-dark mb-2">Gerencia General</h4>
-                    <p class="text-sm text-gray-600 mb-3">Administración y Dirección Estratégica</p>
-                    <div class="text-xs text-primary font-semibold">MBA, Ing. Industrial</div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa-solid fa-stethoscope text-primary text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-dark mb-2">Médicos Ocupacionales</h4>
-                    <p class="text-sm text-gray-600 mb-3">Especialistas en Salud Ocupacional</p>
-                    <div class="text-xs text-primary font-semibold">Colegio Médico del Perú</div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa-solid fa-hard-hat text-primary text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-dark mb-2">Ing. de Seguridad</h4>
-                    <p class="text-sm text-gray-600 mb-3">Especialistas en Prevención de Riesgos</p>
-                    <div class="text-xs text-primary font-semibold">CIP, Certificaciones SST</div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa-solid fa-ambulance text-primary text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-dark mb-2">Paramédicos</h4>
-                    <p class="text-sm text-gray-600 mb-3">Primera Respuesta y Emergencias</p>
-                    <div class="text-xs text-primary font-semibold">Certificados MINSA</div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="contacto.html" class="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
+                        Solicitar Cotización
+                    </a>
+                    <a href="https://wa.me/51950107604" target="_blank" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center">
+                        <i class="fa-brands fa-whatsapp mr-3"></i>
+                        WhatsApp +51 950 107 604
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-primary relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-white mb-6">¿Listo para proteger tu empresa?</h2>
-            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Únete a las más de 500 empresas que confían en InnovaPrev para su seguridad laboral
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="contacto.html" class="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center">
-                    <i class="fa-solid fa-paper-plane mr-3"></i>
-                    Solicitar Información
-                </a>
-                <a href="https://wa.me/51950107604" target="_blank" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center">
-                    <i class="fa-brands fa-whatsapp mr-3"></i>
-                    WhatsApp Directo
-                </a>
-            </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
+    
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+    
+    <!-- JavaScript -->
+    <script src="/app.js"></script>
+</body>
+</html>

@@ -1,277 +1,343 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Meta básico -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaPrev Perú | Seguridad Laboral y Emergencias 24/7</title>
-    
-    <!-- Favicon principal para buscadores (PRIORIDAD) -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="shortcut icon" href="/favicon.ico">
-    
-    <!-- Cargar Font Awesome 7 CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-    
-    <!-- Favicons adicionales -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-    <link rel="manifest" href="/site.webmanifest">
-    
-    <!-- Canonical and Alternate Links -->
-    <link rel="canonical" href="https://www.innovaprev.site/">
-    <link rel="alternate" hreflang="es-pe" href="https://www.innovaprev.site/">
-    <link rel="alternate" hreflang="es" href="https://www.innovaprev.site/">
-    <meta property="og:updated_time" content="2025-08-09T00:00:00Z">
-    <meta name="last-modified" content="2025-08-09">
+    <title>INNOVA PREV - Protegemos lo que Importa</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="InnovaPrev líder en seguridad laboral Perú. Servicios de emergencias 24/7, prevención de riesgos, capacitación SST y medicina ocupacional para empresas.">
     <meta name="keywords" content="innovaprev, seguridad laboral, prevención riesgos, emergencias Perú, capacitación SST, planes emergencia, simulacros, medicina ocupacional, auditorías seguridad, consultoría prevención, OSDI, seguridad industrial, riesgos laborales, gestión emergencias, protección trabajadores">
     <meta name="author" content="OSDI Consultoría Capacitación y Prevención S.A.C.">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="InnovaPrev">
     <meta property="og:title" content="InnovaPrev | Seguridad Laboral y Prevención de Emergencias en Perú">
     <meta property="og:description" content="Especialistas en seguridad laboral, prevención de riesgos y gestión de emergencias. Protegemos lo que importa para tu empresa con servicios 24/7.">
     <meta property="og:url" content="https://www.innovaprev.site">
     <meta property="og:image" content="https://www.innovaprev.site/HeroEmergencia.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="es_PE">
     
-    <!-- Business Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "InnovaPrev - OSDI Consultoría Capacitación y Prevención S.A.C.",
-      "alternateName": "InnovaPrev",
-      "description": "Empresa líder en seguridad laboral, prevención de riesgos, gestión de emergencias y capacitación SST en Perú",
-      "url": "https://www.innovaprev.site",
-      "logo": "https://www.innovaprev.site/Diseñosintítulo.svg",
-      "telephone": "+51950107604",
-      "email": "Operaciones@innovaprev.site",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Oscar R Benavides 3217",
-        "addressLocality": "Callao",
-        "addressCountry": "PE"
-      }
-    }
-    </script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Critical CSS Inline -->
-    <style>
-        /* Reset and base styles */
-        *,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}
-        body{margin:0;font-family:Poppins,sans-serif;overflow-x:hidden}
-        
-        /* Layout classes */
-        .fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0}
-        .z-50{z-index:50}.z-40{z-index:40}
-        .flex{display:flex}.hidden{display:none}
-        .h-16{height:4rem}.w-16{width:4rem}.w-12{width:3rem}.w-full{width:100%}
-        .max-w-7xl{max-width:80rem}.mx-auto{margin-left:auto;margin-right:auto}
-        .items-center{align-items:center}.justify-center{justify-content:center}
-        .gap-4{gap:1rem}.rounded-full{border-radius:9999px}.border-4{border-width:4px}
-        .border-white\/30{border-color:hsla(0,0%,100%,.3)}.border-t-white{border-top-color:rgb(255 255 255)}
-        .bg-primary{background-color:rgb(232 90 51)}.bg-white{background-color:rgb(255 255 255)}
-        .px-6{padding-left:1.5rem;padding-right:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}
-        .text-center{text-align:center}
-        .text-2xl{font-size:1.5rem;line-height:2rem}.text-xl{font-size:1.25rem;line-height:1.75rem}
-        .font-bold{font-weight:700}.text-white{color:rgb(255 255 255)}.text-gray-600{color:rgb(75 85 99)}
-        .opacity-90{opacity:.9}
-        @keyframes spin{to{transform:rotate(1turn)}}.animate-spin{animation:spin 1s linear infinite}
-        
-        /* Custom styles */
-        .gradient-bg{background:#e85a33}
-        
-        /* Loading animation */
-        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        .fade-in{animation:fadeIn 0.5s ease-out forwards}
-        
-        /* Content container */
-        #content-container{min-height:100vh;padding-top:5rem}
-        
-        /* Loading indicator */
-        #loading{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:100;display:none}
-        
-        /* Responsive */
-        @media (min-width:640px){.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:w-16{width:4rem}.sm\:h-16{height:4rem}}
-        @media (min-width:1024px){#content-container{padding-top:5rem}}
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/dist/output.css">
     
-    <!-- Preload Resources -->
-    <link rel="preload" as="image" href="/HeroEmergencia.webp">
-    
-    <!-- Critical CSS Loading Strategy -->
-    <link rel="preload" as="style" href="/assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" as="style" href="/dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <!-- Fallback CSS Loading -->
-    <link rel="stylesheet" href="/assets/css/fonts.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/dist/output.css" media="print" onload="this.media='all'">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     
     <!-- Google Fonts Fallback -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Emergency CSS Injection -->
-    <script>
-        // Ensure CSS is loaded before app initialization
-        const ensureCSS = () => {
-            const tailwindLink = document.createElement('link');
-            tailwindLink.rel = 'stylesheet';
-            tailwindLink.href = '/dist/output.css';
-            tailwindLink.setAttribute('data-emergency', 'true');
-            
-            const fontsLink = document.createElement('link');
-            fontsLink.rel = 'stylesheet';
-            fontsLink.href = '/assets/css/fonts.css';
-            fontsLink.setAttribute('data-emergency', 'true');
-            
-            // Google Fonts fallback
-            const googleFonts = document.createElement('link');
-            googleFonts.rel = 'stylesheet';
-            googleFonts.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
-            googleFonts.setAttribute('data-fallback', 'true');
-            
-            // Check if CSS is already loaded
-            const existingTailwind = document.querySelector('link[href="/dist/output.css"]');
-            const existingFonts = document.querySelector('link[href*="fonts"]');
-            
-            if (!existingTailwind) {
-                document.head.appendChild(tailwindLink);
-            }
-            if (!existingFonts) {
-                document.head.appendChild(fontsLink);
-                document.head.appendChild(googleFonts);
-            }
-        };
-        
-        // Run immediately and as backup
-        ensureCSS();
-        document.addEventListener('DOMContentLoaded', ensureCSS);
-    </script>
-    
-    <noscript>
-        <link rel="stylesheet" href="/assets/css/fonts.css">
-        <link rel="stylesheet" href="/dist/output.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    </noscript>
+    <!-- Preload crítico -->
+    <link rel="preload" as="image" href="/HeroEmergencia.webp">
     
     <meta name="theme-color" content="#E85A33">
 </head>
 <body class="font-poppins overflow-x-hidden">
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 z-50 gradient-bg flex items-center justify-center">
-        <div class="text-center text-white">
-            <div class="flex justify-center mb-8">
-                <div class="relative">
-                    <div class="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
-                </div>
-            </div>
-            <div class="mb-6">
-                <div class="flex items-center justify-center gap-4 mb-4">
-                    <img src="Diseñosintítulo.svg" alt="InnovaPrev Logo Seguridad Laboral Perú" title="InnovaPrev - Líder en Seguridad y Emergencias" class="w-12 h-12 sm:w-16 sm:h-16" width="64" height="64" loading="eager">
-                    <span class="text-2xl sm:text-4xl font-bold">INNOVA PREV</span>
-                </div>
-                <p class="text-lg sm:text-xl opacity-90 max-w-xs mx-auto">Cargando...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEO FALLBACK: Contenido mínimo para bots SIN JavaScript -->
-    <noscript>
-        <main class="min-h-screen pt-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 py-20">
-                <div class="text-center">
-                    <h1 class="text-4xl font-bold mb-6">InnovaPrev Perú | Seguridad Laboral y Emergencias 24/7</h1>
-                    <p class="text-xl text-gray-600 mb-8">
-                        OSDI Consultoría Capacitación y Prevención S.A.C. - Empresa líder en servicios de seguridad laboral en Perú.
-                    </p>
-                    <div class="space-y-4">
-                        <p><strong>Teléfono:</strong> +51 950 107 604</p>
-                        <p><strong>Email:</strong> Operaciones@innovaprev.site</p>
-                        <p><strong>Dirección:</strong> Av. Oscar R Benavides 3217, Callao, Perú</p>
-                    </div>
-                    <nav class="mt-8">
-                        <a href="/sobre-nosotros.html" class="text-primary font-semibold mr-4">Sobre Nosotros</a>
-                        <a href="/servicios.html" class="text-primary font-semibold mr-4">Servicios</a>
-                        <a href="/contacto.html" class="text-primary font-semibold">Contacto</a>
-                    </nav>
-                </div>
-            </div>
-        </main>
-    </noscript>
-
-    <!-- Page Loading Indicator -->
-    <div id="loading" class="z-50">
-        <div class="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-    </div>
-
-    <!-- SPA Containers -->
+    
+    <!-- Navbar Container -->
     <div id="navbar-container"></div>
     
-    <div id="content-container" class="fade-in">
-        <!-- Content will be injected here by app.js -->
-        <div class="min-h-screen flex items-center justify-center">
-            <div class="text-center">
-                <div class="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
-                <p class="text-gray-600">Cargando contenido...</p>
-            </div>
-        </div>
-    </div>
-    
-    <div id="footer-container"></div>
-
-    <!-- SPA Application Script -->
-    <script src="app.js" defer></script>
-    
-    <!-- Error Handling -->
-    <script>
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            console.error('JavaScript Error:', { msg, url, lineNo, columnNo, error });
-            return false;
-        };
-
-        // Fallback if SPA fails
-        setTimeout(() => {
-            const contentContainer = document.getElementById('content-container');
-            const loadingScreen = document.getElementById('loading-screen');
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, rgba(232, 90, 51, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%), url('/HeroEmergencia.webp') center/cover no-repeat;">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
             
-            if (contentContainer && contentContainer.innerHTML.includes('Cargando contenido...')) {
-                console.warn('SPA loading timeout, falling back to static content');
-                
-                if (loadingScreen) {
-                    loadingScreen.style.display = 'none';
-                }
-                
-                contentContainer.innerHTML = `
-                    <div class="min-h-screen flex items-center justify-center bg-gray-50">
-                        <div class="text-center p-8">
-                            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fa-solid fa-triangle-exclamation text-primary text-2xl"></i>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white space-y-8">
+                        <div class="space-y-6">
+                            <div class="inline-flex items-center bg-primary/20 backdrop-blur rounded-full px-6 py-3 border border-primary/30">
+                                <i class="fa-solid fa-shield-halved text-primary mr-3"></i>
+                                <span class="text-white font-semibold">Líderes en Seguridad Laboral</span>
                             </div>
-                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Error de Carga</h2>
-                            <p class="text-gray-600 mb-6">Parece que hay un problema con la carga del contenido.</p>
-                            <button onclick="location.reload()" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                                <i class="fa-solid fa-arrows-rotate mr-2"></i>
-                                Recargar Página
-                            </button>
+                            
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                                <span class="text-white">Protegemos lo que</span>
+                                <span class="text-primary block">Importa</span>
+                            </h1>
+                            
+                            <p class="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-2xl">
+                                Especialistas en <strong class="text-primary">seguridad laboral</strong>, <strong class="text-primary">prevención de riesgos</strong> y <strong class="text-primary">gestión de emergencias</strong> las 24 horas del día, los 7 días de la semana en todo el Perú.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="servicios.html" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
+                                <i class="fa-solid fa-rocket mr-3"></i>
+                                Ver Servicios
+                            </a>
+                            <a href="https://wa.me/51950107604" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
+                                <i class="fa-brands fa-whatsapp mr-3"></i>
+                                Emergencias 24/7
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center gap-6 text-sm">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-400"></i>
+                                <span>+10 años experiencia</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-400"></i>
+                                <span>Equipo certificado</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-400"></i>
+                                <span>Cobertura nacional</span>
+                            </div>
                         </div>
                     </div>
-                `;
-            }
-        }, 5000);
-    </script>
+                    
+                    <!-- Feature Cards -->
+                    <div class="space-y-6">
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-clock text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Respuesta Inmediata</h3>
+                                    <p class="text-gray-300">24/7 - 365 días</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-200">Atención de emergencias las 24 horas con tiempo de respuesta menor a 30 minutos en Lima.</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-certificate text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Profesionales Certificados</h3>
+                                    <p class="text-gray-300">Equipo especializado</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-200">Especialistas certificados en seguridad industrial, medicina ocupacional y gestión de emergencias.</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-map-location-dot text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Cobertura Nacional</h3>
+                                    <p class="text-gray-300">En todo el Perú</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-200">Servicios disponibles en todas las regiones del país con personal local capacitado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Preview Section -->
+        <section class="py-20 bg-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center bg-primary/10 text-primary rounded-full px-6 py-3 font-semibold mb-6">
+                        <i class="fa-solid fa-cogs mr-3"></i>
+                        Nuestros Servicios
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-dark mb-6">Soluciones Integrales en Seguridad</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ofrecemos una amplia gama de servicios especializados para mantener tu empresa segura y cumplir con todas las normativas.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 group border border-gray-100">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-shield-heart text-primary text-2xl group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-4">Planes de Emergencia</h3>
+                        <p class="text-gray-600 mb-6">Desarrollamos planes integrales de prevención y respuesta ante emergencias, adaptados a las necesidades específicas de tu empresa.</p>
+                        <a href="servicios.html" class="text-primary hover:text-primary-dark font-semibold flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                            Conocer más <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 group border border-gray-100">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-graduation-cap text-primary text-2xl group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-4">Capacitación SST</h3>
+                        <p class="text-gray-600 mb-6">Programas de capacitación especializados en seguridad y salud en el trabajo, certificados y adaptados a cada sector industrial.</p>
+                        <a href="servicios.html" class="text-primary hover:text-primary-dark font-semibold flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                            Conocer más <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 group border border-gray-100">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-user-doctor text-primary text-2xl group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-4">Medicina Ocupacional</h3>
+                        <p class="text-gray-600 mb-6">Servicios médicos especializados para la prevención, diagnóstico y tratamiento de enfermedades ocupacionales.</p>
+                        <a href="servicios.html" class="text-primary hover:text-primary-dark font-semibold flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                            Conocer más <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="servicios.html" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center">
+                        Ver Todos los Servicios <i class="fa-solid fa-arrow-right ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center bg-primary/10 text-primary rounded-full px-6 py-3 font-semibold mb-6">
+                        <i class="fa-solid fa-industry mr-3"></i>
+                        Sectores que Atendemos
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-dark mb-6">Experiencia Multisectorial</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Brindamos servicios especializados a empresas de diversos sectores industriales en todo el Perú.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-industry text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">Industrial</h4>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-hammer text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">Construcción</h4>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-pickaxe text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">Minería</h4>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-hospital text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">Salud</h4>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-graduation-cap text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">Educación</h4>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-store text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">Retail</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Counter Section -->
+        <section class="py-20 bg-primary relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark"></div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Nuestra Experiencia en Números</h2>
+                    <p class="text-xl text-white/90 max-w-3xl mx-auto">Años de dedicación reflejados en resultados tangibles</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 counter-grid">
+                    <div class="text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2">
+                            <span class="counter" data-target="9" data-duration="2000">0</span>+
+                        </div>
+                        <p class="text-white/90 font-semibold text-lg">Años de Experiencia</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2">
+                            <span class="counter" data-target="356" data-duration="2500">0</span>+
+                        </div>
+                        <p class="text-white/90 font-semibold text-lg">Empresas Atendidas</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2">
+                            <span class="counter" data-target="954" data-duration="3000">0</span>+
+                        </div>
+                        <p class="text-white/90 font-semibold text-lg">Trabajadores Capacitados</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2">
+                            <span class="counter" data-target="24" data-duration="1500">0</span>/7
+                        </div>
+                        <p class="text-white/90 font-semibold text-lg">Atención Continua</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gray-50 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900"></div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">¿Necesitas Proteger tu Empresa?</h2>
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">No esperes a que ocurra una emergencia. Contacta con nosotros y descubre cómo podemos ayudarte a crear un entorno de trabajo más seguro.</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                        <a href="contacto.html" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center">
+                            <i class="fa-solid fa-paper-plane mr-3"></i>
+                            Solicitar Cotización
+                        </a>
+                        <a href="https://wa.me/51950107604" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center">
+                            <i class="fa-brands fa-whatsapp mr-3"></i>
+                            WhatsApp Directo
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-6 max-w-2xl mx-auto">
+                        <h3 class="text-xl font-bold text-white mb-3">Línea de Emergencias 24/7</h3>
+                        <div class="flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-phone-volume text-primary text-2xl animate-pulse"></i>
+                            <span class="text-2xl font-bold text-primary">+51 950 107 604</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Respuesta inmediata ante cualquier emergencia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+    
+    <!-- JavaScript -->
+    <script src="/app.js"></script>
 </body>
 </html>
