@@ -1,0 +1,45 @@
+[build]
+  # Directorio de publicación
+  publish = "."
+  
+  # Comando de build (no necesario para sitios estáticos, pero útil)
+  # command = "echo 'No build command needed'"
+
+[build.environment]
+  # Variables de entorno si las necesitas
+
+[[redirects]]
+  # Fallback para SPA - todas las rutas van a index.html
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Headers para todos los archivos HTML
+  for = "/*.html"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  # Headers para archivos estáticos con cache largo
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "max-age=31536000"
+
+[[headers]]
+  # Headers para archivos CSS y JS
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "max-age=86400"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "max-age=86400"
+
+# Configuración de funciones (si las usas en el futuro)
+[functions]
+  directory = "netlify/functions"

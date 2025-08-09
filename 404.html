@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada - INNOVA PREV</title>
+    <script>
+        // Redirigir al index.html manteniendo el hash si existe
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        
+        // Si no estamos en la raíz, redirigir al index
+        if (currentPath !== '/' && currentPath !== '/index.html') {
+            window.location.href = '/' + currentHash;
+        }
+    </script>
+    <meta http-equiv="refresh" content="0;url=/">
+</head>
+<body>
+    <p>Redirigiendo...</p>
+</body>
+</html>

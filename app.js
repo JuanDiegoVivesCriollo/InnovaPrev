@@ -16,10 +16,14 @@ class InnovaApp {
         const hash = window.location.hash.substring(1);
         const validPages = ['inicio', 'sobre-nosotros', 'servicios', 'contacto'];
         
+        console.log('🔍 Detectando página actual - Hash:', hash);
+        
         if (hash && validPages.includes(hash)) {
+            console.log('✅ Página válida detectada:', hash);
             return hash;
         }
         
+        console.log('📍 Usando página por defecto: inicio');
         return 'inicio';
     }
 
@@ -480,6 +484,12 @@ const initializeApp = () => {
 const handleLoadingScreen = () => {
     const loadingScreen = document.getElementById('loading-screen');
     const hasVisited = sessionStorage.getItem('hasVisitedSite');
+    
+    // Verificar si venimos de una URL directa con hash
+    const currentHash = window.location.hash;
+    if (currentHash) {
+        console.log('🔗 URL directa con hash detectada:', currentHash);
+    }
     
     if (!hasVisited && loadingScreen) {
         sessionStorage.setItem('hasVisitedSite', 'true');
