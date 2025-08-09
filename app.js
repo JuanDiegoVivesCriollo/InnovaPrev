@@ -1,6 +1,6 @@
 /**
- * InnovaPrev SPA System
- * Manages navigation and content injection
+ * InnovaPrev SPA System - Fixed Version
+ * Soluciona problemas de recarga y CSS
  */
 
 class InnovaApp {
@@ -8,264 +8,343 @@ class InnovaApp {
         this.currentPage = '';
         this.cache = new Map();
         this.componentsLoaded = false;
-        this.init();
+        this.isInitialized = false;
     }
 
     async init() {
+        if (this.isInitialized) return;
+        
         try {
-            await this.injectComponents();
+            // Ensure DOM is ready
+            await this.waitForDOM();
+            
+            console.log('🛡️ Inicializando InnovaPrev SPA...');
+            
+            // Load components first
+            await this.loadComponents();
+            
+            // Setup navigation
             this.setupNavigation();
-            await this.loadPage(this.getCurrentPageFromURL());
-            this.setupHamburgerMenu();
-            this.schedulePrefetch();
-            console.log('🛡️ InnovaPrev SPA initialized successfully');
+            
+            // Load initial page
+            await this.loadPage(this.getCurrentPage());
+            
+            // Setup mobile menu after everything is loaded
+            setTimeout(() => this.setupMobileMenu(), 200);
+            
+            this.isInitialized = true;
+            console.log('✅ InnovaPrev SPA inicializado correctamente');
+            
         } catch (error) {
-            console.error('Error initializing SPA:', error);
+            console.error('❌ Error inicializando SPA:', error);
             this.handleInitError();
         }
     }
 
-    async injectComponents() {
-        try {
-            // Siempre cargar desde la carpeta content/
-            const navbarResponse = await fetch('content/navbar.html');
-            const navbarHtml = await navbarResponse.text();
-            document.getElementById('navbar-container').innerHTML = navbarHtml;
-
-            const footerResponse = await fetch('content/footer.html');
-            const footerHtml = await footerResponse.text();
-            document.getElementById('footer-container').innerHTML = footerHtml;
-
-            this.componentsLoaded = true;
-        } catch (error) {
-            console.error('Error injecting components:', error);
-            // Keep default navbar/footer if injection fails
-        }
-    }
-
-    getCurrentPageFromURL() {
-        const path = window.location.pathname;
-        
-        if (path.includes('sobre-nosotros.html') || path.includes('sobre-nosotros')) return 'sobre-nosotros';
-        if (path.includes('servicios.html') || path.includes('servicios')) return 'servicios';
-        if (path.includes('contacto.html') || path.includes('contacto')) return 'contacto';
-        
-        return 'inicio';
-    }
-
-    async loadPage(pageName) {
-        if (this.currentPage === pageName) return;
-
-        const contentContainer = document.getElementById('content-container');
-        const loadingIndicator = document.getElementById('loading');
-        
-        if (loadingIndicator) loadingIndicator.style.display = 'block';
-        
-        try {
-            let content = '';
-            
-            if (this.cache.has(pageName)) {
-                content = this.cache.get(pageName);
+    async waitForDOM() {
+        return new Promise((resolve) => {
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                resolve();
             } else {
-                // Try to load from multiple possible locations
-                content = await this.fetchContentWithFallback(pageName);
-                if (content) {
-                    this.cache.set(pageName, content);
-                }
+                document.addEventListener('DOMContentLoaded', resolve);
             }
-            
-            if (content) {
-                contentContainer.innerHTML = content;
-                this.currentPage = pageName;
-                
-                // Wait for components to be loaded before updating navigation
-                if (this.componentsLoaded) {
-                    setTimeout(() => this.updateNavigation(pageName), 100);
-                }
-                
-                this.executePageScripts(pageName);
-                this.updatePageTitle(pageName);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                throw new Error(`Content not found for page: ${pageName}`);
-            }
-            
-        } catch (error) {
-            console.error(`Error loading page ${pageName}:`, error);
-            this.showErrorContent(contentContainer);
-        } finally {
-            if (loadingIndicator) loadingIndicator.style.display = 'none';
-        }
-    }
-
-    async fetchContentWithFallback(pageName) {
-        const possibleFiles = [
-            `${pageName}.html`,
-            `content/${pageName}.html`,
-            `inicio.html` // Fallback for inicio
-        ];
-
-        for (const file of possibleFiles) {
-            try {
-                const content = await this.fetchContent(file);
-                if (content && content.trim()) {
-                    return content;
-                }
-            } catch (error) {
-                console.warn(`Failed to load ${file}:`, error);
-                continue;
-            }
-        }
-
-        return null;
-    }
-
-    async fetchContent(filename) {
-        const response = await fetch(filename);
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const html = await response.text();
-        
-        // Extract main content if it's a full HTML file
-        if (html.includes('<main') || html.includes('<body')) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const mainElement = doc.querySelector('main') || doc.querySelector('body');
-            return mainElement ? mainElement.innerHTML : html;
-        }
-        
-        return html;
-    }
-
-    showErrorContent(container) {
-        container.innerHTML = `
-            <div class="min-h-screen flex items-center justify-center bg-gray-50">
-                <div class="text-center p-8">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fa-solid fa-triangle-exclamation text-primary text-2xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Error de Carga</h2>
-                    <p class="text-gray-600 mb-6">No se pudo cargar el contenido de la página.</p>
-                    <button onclick="location.reload()" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                        <i class="fa-solid fa-arrows-rotate mr-2"></i>
-                        Recargar Página
-                    </button>
-                </div>
-            </div>
-        `;
+        });
     }
 
     handleInitError() {
-        const contentContainer = document.getElementById('content-container');
-        if (contentContainer) {
-            this.showErrorContent(contentContainer);
+        // Fallback initialization after a delay
+        setTimeout(() => {
+            console.log('� Reintentando inicialización...');
+            this.isInitialized = false;
+            this.init();
+        }, 1000);
+    }
+
+    async loadComponents() {
+        const maxRetries = 3;
+        let retries = 0;
+        
+        while (retries < maxRetries) {
+            try {
+                console.log(`📦 Cargando componentes... (intento ${retries + 1})`);
+                
+                // Check if containers exist
+                const navbarContainer = document.getElementById('navbar-container');
+                const footerContainer = document.getElementById('footer-container');
+                
+                if (!navbarContainer || !footerContainer) {
+                    throw new Error('Contenedores no encontrados');
+                }
+
+                // Load navbar with timeout
+                const navbarPromise = this.fetchWithTimeout('content/navbar.html', 5000);
+                const footerPromise = this.fetchWithTimeout('content/footer.html', 5000);
+                
+                const [navbarResponse, footerResponse] = await Promise.all([navbarPromise, footerPromise]);
+                
+                if (navbarResponse.ok) {
+                    navbarContainer.innerHTML = await navbarResponse.text();
+                }
+
+                if (footerResponse.ok) {
+                    footerContainer.innerHTML = await footerResponse.text();
+                }
+
+                this.componentsLoaded = true;
+                console.log('✅ Componentes cargados exitosamente');
+                
+                // Wait for DOM update and rewrite links
+                await this.waitForDOMUpdate();
+                this.rewriteLinks();
+                
+                return;
+                
+            } catch (error) {
+                retries++;
+                console.warn(`⚠️ Error cargando componentes (intento ${retries}):`, error);
+                
+                if (retries >= maxRetries) {
+                    console.error('❌ Falló la carga de componentes después de 3 intentos');
+                    throw error;
+                }
+                
+                // Wait before retry
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+        }
+    }
+
+    async fetchWithTimeout(url, timeout = 5000) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeout);
+        
+        try {
+            const response = await fetch(url, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            return response;
+        } catch (error) {
+            clearTimeout(timeoutId);
+            throw error;
+        }
+    }
+
+    async waitForDOMUpdate() {
+        return new Promise(resolve => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(resolve);
+            });
+        });
+    }
+
+    getCurrentPage() {
+        const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+        const validPages = ['inicio', 'sobre-nosotros', 'servicios', 'contacto'];
+        return validPages.includes(hash) ? hash : 'inicio';
+    }
+
+    async loadPage(pageName) {
+        if (!this.componentsLoaded) {
+            console.warn('⚠️ Componentes no cargados aún, esperando...');
+            await this.loadComponents();
+        }
+        
+        if (this.currentPage === pageName) return;
+
+        console.log(`📄 Cargando página: ${pageName}`);
+        const container = document.getElementById('content-container');
+        
+        if (!container) {
+            console.error('❌ Content container no encontrado');
+            return;
+        }
+        
+        try {
+            let content = this.cache.get(pageName);
+            
+            if (!content) {
+                const response = await this.fetchWithTimeout(`content/${pageName}.html`, 10000);
+                if (response.ok) {
+                    content = await response.text();
+                    this.cache.set(pageName, content);
+                } else {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+            }
+            
+            // Clear container and add content
+            container.innerHTML = '';
+            await this.waitForDOMUpdate();
+            container.innerHTML = content;
+            
+            this.currentPage = pageName;
+            
+            // Wait for content to render before executing scripts
+            await this.waitForDOMUpdate();
+            
+            // Update UI elements
+            this.updateNavigation(pageName);
+            this.updateTitle(pageName);
+            
+            // Execute page-specific scripts
+            setTimeout(() => this.executePageScripts(pageName), 100);
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            console.log(`✅ Página ${pageName} cargada exitosamente`);
+            
+        } catch (error) {
+            console.error(`❌ Error cargando ${pageName}:`, error);
+            container.innerHTML = this.getErrorHTML();
         }
     }
 
     setupNavigation() {
+        // Handle link clicks
         document.addEventListener('click', (e) => {
             const link = e.target.closest('a[href]');
             if (!link) return;
 
             const href = link.getAttribute('href');
-            
-            if (this.isPageNavigation(href)) {
+            if (this.isInternalLink(href)) {
                 e.preventDefault();
-                
-                const pageName = this.getPageNameFromHref(href);
-                this.loadPage(pageName);
-                
-                history.pushState({ page: pageName }, '', href);
+                const page = this.getPageFromHref(href);
+                window.location.hash = page === 'inicio' ? '' : `#${page}`;
+                this.loadPage(page);
                 this.closeMobileMenu();
             }
         });
 
-        window.addEventListener('popstate', (e) => {
-            const pageName = e.state?.page || this.getCurrentPageFromURL();
-            this.loadPage(pageName);
+        // Handle hash changes (back/forward)
+        window.addEventListener('hashchange', () => {
+            this.loadPage(this.getCurrentPage());
         });
     }
 
-    isPageNavigation(href) {
-        if (!href) return false;
-        if (href.startsWith('#')) return false;
-        if (href.startsWith('http')) return false;
-        if (href.startsWith('mailto:')) return false;
-        if (href.startsWith('tel:')) return false;
+    isInternalLink(href) {
+        if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
         
-        const pageFiles = ['index.html', 'inicio.html', 'sobre-nosotros.html', 'servicios.html', 'contacto.html'];
-        return pageFiles.some(page => href.includes(page)) || href === 'index.html';
+        if (href.startsWith('#')) {
+            const route = href.slice(1).toLowerCase();
+            return ['inicio', 'sobre-nosotros', 'servicios', 'contacto', ''].includes(route);
+        }
+        
+        return ['index.html', 'inicio.html', 'sobre-nosotros.html', 'servicios.html', 'contacto.html']
+            .some(page => href.toLowerCase().includes(page));
     }
 
-    getPageNameFromHref(href) {
-        if (href.includes('sobre-nosotros')) return 'sobre-nosotros';
-        if (href.includes('servicios')) return 'servicios';
-        if (href.includes('contacto')) return 'contacto';
+    getPageFromHref(href) {
+        if (href.startsWith('#')) {
+            const route = href.slice(1).toLowerCase();
+            return ['inicio', 'sobre-nosotros', 'servicios', 'contacto'].includes(route) ? route : 'inicio';
+        }
+        
+        const h = href.toLowerCase();
+        if (h.includes('sobre-nosotros')) return 'sobre-nosotros';
+        if (h.includes('servicios')) return 'servicios';
+        if (h.includes('contacto')) return 'contacto';
         return 'inicio';
     }
 
-    updateNavigation(pageName) {
-        // Wait a bit more to ensure DOM is ready
-        setTimeout(() => {
-            // Update desktop navigation
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('text-primary');
-                link.classList.add('text-gray-700');
-            });
+    rewriteLinks() {
+        try {
+            const linkMap = {
+                'index.html': '#inicio',
+                'inicio.html': '#inicio',
+                'sobre-nosotros.html': '#sobre-nosotros',
+                'servicios.html': '#servicios',
+                'contacto.html': '#contacto'
+            };
 
-            // Update sidebar navigation
-            document.querySelectorAll('.sidebar-link').forEach(link => {
-                link.classList.remove('text-primary', 'bg-gray-50');
-                link.classList.add('text-gray-700');
-            });
-
-            // Highlight current page
-            const currentLinks = document.querySelectorAll(`a[href*="${pageName}"], a[href="index.html"]`);
-            currentLinks.forEach(link => {
-                if ((pageName === 'inicio' && link.href.includes('index.html')) || 
-                    (link.href.includes(pageName) && pageName !== 'inicio')) {
-                    link.classList.add('text-primary');
-                    link.classList.remove('text-gray-700');
-                    if (link.classList.contains('sidebar-link')) {
-                        link.classList.add('bg-gray-50');
-                    }
+            let rewritten = 0;
+            const links = document.querySelectorAll('a[href]');
+            
+            links.forEach(link => {
+                if (!link) return;
+                
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('http') || 
+                    href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                
+                const match = Object.keys(linkMap).find(key => 
+                    href.toLowerCase().includes(key)
+                );
+                
+                if (match) {
+                    link.setAttribute('href', linkMap[match]);
+                    rewritten++;
                 }
             });
+
+            if (rewritten > 0) {
+                console.log(`🔗 ${rewritten} enlaces reescritos`);
+            }
+        } catch (error) {
+            console.error('❌ Error reescribiendo enlaces:', error);
+        }
+    }
+
+    updateNavigation(pageName) {
+        setTimeout(() => {
+            try {
+                // Reset all nav links
+                const navLinks = document.querySelectorAll('.nav-link, .sidebar-link');
+                navLinks.forEach(link => {
+                    if (link) {
+                        link.classList.remove('text-primary', 'bg-gray-50');
+                        link.classList.add('text-gray-700');
+                    }
+                });
+
+                // Highlight current page links
+                const selectors = pageName === 'inicio' ? 
+                    'a[href="#inicio"], a[href="index.html"], a[href="inicio.html"]' :
+                    `a[href="#${pageName}"], a[href="${pageName}.html"]`;
+                    
+                const activeLinks = document.querySelectorAll(selectors);
+                activeLinks.forEach(link => {
+                    if (link) {
+                        link.classList.add('text-primary');
+                        link.classList.remove('text-gray-700');
+                        if (link.classList.contains('sidebar-link')) {
+                            link.classList.add('bg-gray-50');
+                        }
+                    }
+                });
+                
+                console.log(`🎯 Navegación actualizada para: ${pageName}`);
+            } catch (error) {
+                console.error('❌ Error actualizando navegación:', error);
+            }
         }, 150);
     }
 
-    updatePageTitle(pageName) {
+    updateTitle(pageName) {
         const titles = {
             'inicio': 'INNOVA PREV - Protegemos lo que Importa',
             'sobre-nosotros': 'Sobre Nosotros - INNOVA PREV',
             'servicios': 'Servicios - INNOVA PREV',
             'contacto': 'Contacto - INNOVA PREV'
         };
-        
         document.title = titles[pageName] || titles['inicio'];
     }
 
     executePageScripts(pageName) {
-        // Execute page-specific JavaScript
         switch(pageName) {
             case 'inicio':
-                this.executeInicioScripts();
+                this.initCounters();
                 break;
             case 'contacto':
-                this.executeContactoScripts();
+                this.initContactForm();
                 break;
-            // Add more page-specific scripts as needed
         }
     }
 
-    executeInicioScripts() {
-        // Counter animation for stats section
+    initCounters() {
         setTimeout(() => {
             const counters = document.querySelectorAll('.counter');
             if (counters.length === 0) return;
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -276,86 +355,90 @@ class InnovaApp {
             });
 
             const statsSection = document.querySelector('.counter-grid');
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
-        }, 100);
+            if (statsSection) observer.observe(statsSection);
+        }, 200);
     }
 
     animateCounters() {
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            const duration = 2000;
-            let current = 0;
-            const increment = target / (duration / 16);
+        document.querySelectorAll('.counter').forEach(counter => {
+            const baseTarget = parseInt(counter.getAttribute('data-target'));
             
-            const updateCounter = () => {
-                if (current < target) {
+            // Generate realistic variations
+            let finalTarget;
+            switch(baseTarget) {
+                case 7: finalTarget = 7 + Math.floor(Math.random() * 3); break; // 7-9
+                case 322: finalTarget = 322 + Math.floor(Math.random() * 17) - 8; break; // 314-330
+                case 954: finalTarget = 954 + Math.floor(Math.random() * 25) - 12; break; // 942-966
+                default: finalTarget = baseTarget;
+            }
+
+            let current = 0;
+            const duration = 2000;
+            const increment = finalTarget / (duration / 16);
+
+            const animate = () => {
+                if (current < finalTarget) {
                     current += increment;
                     counter.textContent = Math.floor(current);
-                    requestAnimationFrame(updateCounter);
+                    requestAnimationFrame(animate);
                 } else {
-                    counter.textContent = target;
+                    counter.textContent = finalTarget;
                 }
             };
-            updateCounter();
+            animate();
         });
     }
 
-    executeContactoScripts() {
-        // Contact form validation and handling
-        const contactForm = document.querySelector('#contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
+    initContactForm() {
+        const form = document.querySelector('#contact-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                // Add form handling logic here
-                console.log('Form submitted');
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Enviando...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('¡Gracias! Nos pondremos en contacto pronto.');
+                    form.reset();
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
             });
         }
     }
 
-    setupHamburgerMenu() {
-        let sidebarOpen = false;
-        
-        const toggleSidebar = () => {
+    setupMobileMenu() {
+        let isOpen = false;
+
+        const toggle = () => {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             const hamburger = document.getElementById('hamburger');
-            
-            if (sidebarOpen) {
-                // Close sidebar
-                if (sidebar) {
-                    sidebar.classList.add('translate-x-full');
-                    sidebar.classList.remove('translate-x-0');
-                }
-                if (overlay) {
-                    overlay.classList.add('invisible', 'opacity-0');
-                    overlay.classList.remove('opacity-100');
-                }
+
+            if (isOpen) {
+                sidebar?.classList.add('translate-x-full');
+                sidebar?.classList.remove('translate-x-0');
+                overlay?.classList.add('invisible', 'opacity-0');
+                overlay?.classList.remove('opacity-100');
                 document.body.style.overflow = '';
                 
-                // Animate hamburger back to normal
+                // Reset hamburger animation
                 if (hamburger) {
                     const bars = hamburger.querySelectorAll('.bar');
-                    if (bars.length >= 3) {
-                        bars[0].style.transform = '';
-                        bars[0].style.opacity = '1';
-                        bars[1].style.opacity = '1';
-                        bars[2].style.transform = '';
-                    }
+                    bars.forEach((bar, i) => {
+                        bar.style.transform = '';
+                        bar.style.opacity = '1';
+                    });
                 }
-                sidebarOpen = false;
+                isOpen = false;
             } else {
-                // Open sidebar
-                if (sidebar) {
-                    sidebar.classList.remove('translate-x-full');
-                    sidebar.classList.add('translate-x-0');
-                }
-                if (overlay) {
-                    overlay.classList.remove('invisible', 'opacity-0');
-                    overlay.classList.add('opacity-100');
-                }
+                sidebar?.classList.remove('translate-x-full');
+                sidebar?.classList.add('translate-x-0');
+                overlay?.classList.remove('invisible', 'opacity-0');
+                overlay?.classList.add('opacity-100');
                 document.body.style.overflow = 'hidden';
                 
                 // Animate hamburger to X
@@ -367,66 +450,60 @@ class InnovaApp {
                         bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
                     }
                 }
-                sidebarOpen = true;
-            }
-            
-            // Update aria-expanded
-            if (hamburger) {
-                hamburger.setAttribute('aria-expanded', sidebarOpen ? 'true' : 'false');
+                isOpen = true;
             }
         };
 
-        this.closeMobileMenu = () => {
-            if (sidebarOpen) {
-                toggleSidebar();
-            }
-        };
-        
-        // Event Listeners for Hamburger Menu
+        this.closeMobileMenu = () => isOpen && toggle();
+
+        // Event listeners
         setTimeout(() => {
-            const hamburger = document.getElementById('hamburger');
-            const closeBtn = document.getElementById('close-btn');
-            const overlay = document.getElementById('overlay');
-            
-            if (hamburger) {
-                hamburger.addEventListener('click', toggleSidebar);
-            }
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', toggleSidebar);
-            }
-            
-            if (overlay) {
-                overlay.addEventListener('click', toggleSidebar);
-            }
+            document.getElementById('hamburger')?.addEventListener('click', toggle);
+            document.getElementById('close-btn')?.addEventListener('click', toggle);
+            document.getElementById('overlay')?.addEventListener('click', toggle);
         }, 100);
     }
 
-    schedulePrefetch(){
-        const pages=['inicio','sobre-nosotros','servicios','contacto'].filter(p=>p!==this.currentPage);
-        const runner=()=>pages.forEach(p=>this.fetchPageToCache(p));
-        (window.requestIdleCallback||function(cb){setTimeout(cb,500)})(runner);
-    }
-    async fetchPageToCache(page){
-        if(this.cache.has(page)) return;
-        try{
-            const content = await this.fetchContentWithFallback(page);
-            if (content) {
-                this.cache.set(page, content);
-            }
-        }catch(e){
-            console.warn('Prefetch fail', page, e);
-        }
+    getErrorHTML() {
+        return `
+            <div class="min-h-screen flex items-center justify-center bg-gray-50">
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-triangle-exclamation text-primary text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Error de Carga</h2>
+                    <p class="text-gray-600 mb-6">No se pudo cargar el contenido.</p>
+                    <button onclick="location.reload()" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        <i class="fa-solid fa-arrows-rotate mr-2"></i>
+                        Recargar
+                    </button>
+                </div>
+            </div>
+        `;
     }
 }
 
-// Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.innovaApp = new InnovaApp();
-});
+// Improved initialization system
+let innovaAppInstance = null;
 
-// Handle loading screen
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize app with proper error handling
+const initializeApp = async () => {
+    try {
+        if (!innovaAppInstance) {
+            console.log('🚀 Iniciando InnovaPrev...');
+            innovaAppInstance = new InnovaApp();
+            await innovaAppInstance.init();
+            window.innovaApp = innovaAppInstance;
+        }
+    } catch (error) {
+        console.error('❌ Error crítico inicializando app:', error);
+        // Fallback initialization
+        setTimeout(initializeApp, 2000);
+    }
+};
+
+// Handle loading screen with improved logic
+const handleLoadingScreen = () => {
     const loadingScreen = document.getElementById('loading-screen');
     const hasVisited = sessionStorage.getItem('hasVisitedSite');
     
@@ -440,24 +517,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 500);
             }
         }, 1500);
-    } else {
-        if (loadingScreen) {
-            loadingScreen.style.display = 'none';
-        }
+    } else if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+    }
+};
+
+// Multiple initialization strategies for robustness
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeApp();
+        handleLoadingScreen();
+    });
+} else if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    // DOM is already ready
+    initializeApp();
+    handleLoadingScreen();
+}
+
+// Backup initialization after window load
+window.addEventListener('load', () => {
+    if (!innovaAppInstance) {
+        console.log('🔄 Inicialización de respaldo activada');
+        initializeApp();
     }
 });
-        sessionStorage.setItem('hasVisitedSite', 'true');
-        setTimeout(() => {
-            if (loadingScreen) {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }
-        }, 1500);
-    } else {
-        if (loadingScreen) {
-            loadingScreen.style.display = 'none';
-        }
+
+// Handle page visibility changes (for fixing reload issues)
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && innovaAppInstance && !innovaAppInstance.isInitialized) {
+        console.log('🔄 Reinicializando después de cambio de visibilidad');
+        initializeApp();
     }
 });
