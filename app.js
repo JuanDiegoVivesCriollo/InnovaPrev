@@ -7,44 +7,65 @@ class InnovaApp {
     constructor() {
         this.currentPage = '';
         this.cache = new Map();
+        this.componentsLoaded = false;
         this.init();
     }
 
     async init() {
-        await this.injectComponents();
-        this.setupNavigation();
-        this.loadPage(this.getCurrentPageFromURL());
-        this.setupHamburgerMenu();
-        this.schedulePrefetch(); // prefetch nuevo
-        console.log('🛡️ InnovaPrev SPA initialized successfully');
+        try {
+            await this.injectComponents();
+            this.setupNavigation();
+            await this.loadPage(this.getCurrentPageFromURL());
+            this.setupHamburgerMenu();
+            this.schedulePrefetch();
+            console.log('🛡️ InnovaPrev SPA initialized successfully');
+        } catch (error) {
+            console.error('Error initializing SPA:', error);
+            this.handleInitError();
+        }
     }
 
     async injectComponents() {
         try {
-            // Inject Navbar
-            const navbarResponse = await fetch('content/navbar.html');
-            const navbarHtml = await navbarResponse.text();
-            document.getElementById('navbar-container').innerHTML = navbarHtml;
+            // Try content folder first, fallback to root
+            let navbarHtml, footerHtml;
+            
+            try {
+                const navbarResponse = await fetch('navbar.html');
+                navbarHtml = await navbarResponse.text();
+            } catch {
+                // Fallback to content folder
+                const navbarResponse = await fetch('content/navbar.html');
+                navbarHtml = await navbarResponse.text();
+            }
+            
+            try {
+                const footerResponse = await fetch('footer.html');
+                footerHtml = await footerResponse.text();
+            } catch {
+                // Fallback to content folder
+                const footerResponse = await fetch('content/footer.html');
+                footerHtml = await footerResponse.text();
+            }
 
-            // Inject Footer
-            const footerResponse = await fetch('content/footer.html');
-            const footerHtml = await footerResponse.text();
+            document.getElementById('navbar-container').innerHTML = navbarHtml;
             document.getElementById('footer-container').innerHTML = footerHtml;
+            this.componentsLoaded = true;
 
         } catch (error) {
             console.error('Error injecting components:', error);
+            // Keep default navbar/footer if injection fails
         }
     }
 
     getCurrentPageFromURL() {
         const path = window.location.pathname;
         
-        // Extract page name from current URL
         if (path.includes('sobre-nosotros.html') || path.includes('sobre-nosotros')) return 'sobre-nosotros';
         if (path.includes('servicios.html') || path.includes('servicios')) return 'servicios';
         if (path.includes('contacto.html') || path.includes('contacto')) return 'contacto';
         
-        return 'inicio'; // default to home
+        return 'inicio';
     }
 
     async loadPage(pageName) {
@@ -53,120 +74,129 @@ class InnovaApp {
         const contentContainer = document.getElementById('content-container');
         const loadingIndicator = document.getElementById('loading');
         
-        // Show loading
         if (loadingIndicator) loadingIndicator.style.display = 'block';
         
         try {
             let content = '';
             
-            // Check cache first
             if (this.cache.has(pageName)) {
                 content = this.cache.get(pageName);
             } else {
-                // Load content based on page
-                switch(pageName) {
-                    case 'inicio':
-                        content = await this.fetchContent('content/inicio.html');
-                        break;
-                    case 'sobre-nosotros':
-                        content = await this.fetchContent('content/sobre-nosotros.html');
-                        break;
-                    case 'servicios':
-                        content = await this.fetchContent('content/servicios.html');
-                        break;
-                    case 'contacto':
-                        content = await this.fetchContent('content/contacto.html');
-                        break;
-                    default:
-                        content = await this.fetchContent('content/inicio.html');
-                        pageName = 'inicio';
+                // Try to load from multiple possible locations
+                content = await this.fetchContentWithFallback(pageName);
+                if (content) {
+                    this.cache.set(pageName, content);
                 }
-                
-                // Cache the content
-                this.cache.set(pageName, content);
             }
             
-            // Update content
-            contentContainer.innerHTML = content;
-            this.currentPage = pageName;
-            
-            // Update navigation state
-            this.updateNavigation(pageName);
-            
-            // Run page-specific scripts
-            this.executePageScripts(pageName);
-            
-            // Update page title
-            this.updatePageTitle(pageName);
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (content) {
+                contentContainer.innerHTML = content;
+                this.currentPage = pageName;
+                
+                // Wait for components to be loaded before updating navigation
+                if (this.componentsLoaded) {
+                    setTimeout(() => this.updateNavigation(pageName), 100);
+                }
+                
+                this.executePageScripts(pageName);
+                this.updatePageTitle(pageName);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                throw new Error(`Content not found for page: ${pageName}`);
+            }
             
         } catch (error) {
             console.error(`Error loading page ${pageName}:`, error);
-            contentContainer.innerHTML = `
-                <div class="min-h-screen flex items-center justify-center">
-                    <div class="text-center text-red-600">
-                        <div class="mx-auto mb-4" style="width:56px;height:56px;">
-                          <div style="width:56px;height:56px;border:6px solid #fecaca;border-top-color:#dc2626;border-radius:50%;animation:spin 1s linear infinite"></div>
-                        </div>
-                        <h2 class="text-2xl font-bold mb-2">Error al cargar la página</h2>
-                        <p>Por favor, intente nuevamente.</p>
-                        <button onclick="location.reload()" class="mt-4 bg-primary text-white px-6 py-2 rounded-lg">
-                            Recargar
-                        </button>
-                    </div>
-                </div>
-            `;
+            this.showErrorContent(contentContainer);
         } finally {
-            // Hide loading
             if (loadingIndicator) loadingIndicator.style.display = 'none';
         }
     }
 
+    async fetchContentWithFallback(pageName) {
+        const possibleFiles = [
+            `${pageName}.html`,
+            `content/${pageName}.html`,
+            `inicio.html` // Fallback for inicio
+        ];
+
+        for (const file of possibleFiles) {
+            try {
+                const content = await this.fetchContent(file);
+                if (content && content.trim()) {
+                    return content;
+                }
+            } catch (error) {
+                console.warn(`Failed to load ${file}:`, error);
+                continue;
+            }
+        }
+
+        return null;
+    }
+
     async fetchContent(filename) {
-        if (filename.endsWith('.html')) {
-            // For full HTML files, extract only the main content
-            const response = await fetch(filename);
-            const html = await response.text();
-            
-            // Extract content between main tags or body content
+        const response = await fetch(filename);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const html = await response.text();
+        
+        // Extract main content if it's a full HTML file
+        if (html.includes('<main') || html.includes('<body')) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const mainElement = doc.querySelector('main') || doc.querySelector('body');
-            
             return mainElement ? mainElement.innerHTML : html;
-        } else {
-            // For content-only files
-            const response = await fetch(filename);
-            return await response.text();
+        }
+        
+        return html;
+    }
+
+    showErrorContent(container) {
+        container.innerHTML = `
+            <div class="min-h-screen flex items-center justify-center bg-gray-50">
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-triangle-exclamation text-primary text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Error de Carga</h2>
+                    <p class="text-gray-600 mb-6">No se pudo cargar el contenido de la página.</p>
+                    <button onclick="location.reload()" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        <i class="fa-solid fa-arrows-rotate mr-2"></i>
+                        Recargar Página
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    handleInitError() {
+        const contentContainer = document.getElementById('content-container');
+        if (contentContainer) {
+            this.showErrorContent(contentContainer);
         }
     }
 
     setupNavigation() {
-        // Handle navigation clicks
         document.addEventListener('click', (e) => {
             const link = e.target.closest('a[href]');
             if (!link) return;
 
             const href = link.getAttribute('href');
             
-            // Check if it's a page navigation (not external links)
             if (this.isPageNavigation(href)) {
                 e.preventDefault();
                 
                 const pageName = this.getPageNameFromHref(href);
                 this.loadPage(pageName);
                 
-                // Update URL without full page reload
                 history.pushState({ page: pageName }, '', href);
-                
-                // Close mobile menu if open
                 this.closeMobileMenu();
             }
         });
 
-        // Handle browser back/forward
         window.addEventListener('popstate', (e) => {
             const pageName = e.state?.page || this.getCurrentPageFromURL();
             this.loadPage(pageName);
@@ -192,35 +222,33 @@ class InnovaApp {
     }
 
     updateNavigation(pageName) {
-        // Update desktop navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('text-primary');
-            link.classList.add('text-gray-700');
-        });
+        // Wait a bit more to ensure DOM is ready
+        setTimeout(() => {
+            // Update desktop navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-primary');
+                link.classList.add('text-gray-700');
+            });
 
-        // Update sidebar navigation
-        document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.classList.remove('text-primary', 'bg-gray-50');
-            link.classList.add('text-gray-700');
-        });
+            // Update sidebar navigation
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('text-primary', 'bg-gray-50');
+                link.classList.add('text-gray-700');
+            });
 
-        // Highlight current page
-        const currentLinks = document.querySelectorAll(`a[href*="${pageName}"], a[href="index.html"]`);
-        currentLinks.forEach(link => {
-            if (pageName === 'inicio' && link.href.includes('index.html')) {
-                link.classList.add('text-primary');
-                link.classList.remove('text-gray-700');
-                if (link.classList.contains('sidebar-link')) {
-                    link.classList.add('bg-gray-50');
+            // Highlight current page
+            const currentLinks = document.querySelectorAll(`a[href*="${pageName}"], a[href="index.html"]`);
+            currentLinks.forEach(link => {
+                if ((pageName === 'inicio' && link.href.includes('index.html')) || 
+                    (link.href.includes(pageName) && pageName !== 'inicio')) {
+                    link.classList.add('text-primary');
+                    link.classList.remove('text-gray-700');
+                    if (link.classList.contains('sidebar-link')) {
+                        link.classList.add('bg-gray-50');
+                    }
                 }
-            } else if (link.href.includes(pageName) && pageName !== 'inicio') {
-                link.classList.add('text-primary');
-                link.classList.remove('text-gray-700');
-                if (link.classList.contains('sidebar-link')) {
-                    link.classList.add('bg-gray-50');
-                }
-            }
-        });
+            });
+        }, 150);
     }
 
     updatePageTitle(pageName) {
@@ -397,10 +425,13 @@ class InnovaApp {
     async fetchPageToCache(page){
         if(this.cache.has(page)) return;
         try{
-            let file= page==='inicio'?'content/inicio.html':`content/${page}.html`;
-            const content=await this.fetchContent(file);
-            this.cache.set(page,content);
-        }catch(e){console.warn('Prefetch fail',page,e);}
+            const content = await this.fetchContentWithFallback(page);
+            if (content) {
+                this.cache.set(page, content);
+            }
+        }catch(e){
+            console.warn('Prefetch fail', page, e);
+        }
     }
 }
 
