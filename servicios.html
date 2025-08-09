@@ -1,24 +1,109 @@
 <!-- Main Content -->
 <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, rgba(232, 90, 51, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%), url('/servicios.svg') center/cover no-repeat;">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white space-y-8">
+                    <div class="inline-flex items-center bg-primary/20 backdrop-blur rounded-full px-6 py-3 border border-primary/30">
+                        <i class="fa-solid fa-briefcase-medical text-primary mr-3"></i>
+                        <span class="text-white font-semibold">Nuestros Servicios</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        <span class="text-white">Servicios</span>
+                        <span class="text-primary block">Especializados</span>
+                        <span class="text-white">en Seguridad Laboral</span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-2xl">
+                        <strong class="text-primary">InnovaPrev</strong> ofrece servicios integrales de seguridad laboral, prevención de riesgos y gestión de emergencias 
+                        para empresas en todo Perú. Nuestro equipo de profesionales certificados brinda soluciones que garantizan 
+                        el cumplimiento de todas las normativas peruanas de seguridad y salud en el trabajo.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contacto" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
+                            <i class="fa-solid fa-phone mr-3"></i>
+                            Solicitar Cotización
+                        </a>
+                        <a href="https://wa.me/51950107604" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp mr-3"></i>
+                            WhatsApp 24/7
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 text-sm">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span>Respuesta inmediata</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span>Equipo certificado</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span>Disponible 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl shadow-lg p-6 border border-white/20 text-center">
+                            <div class="text-3xl font-bold text-primary">10+</div>
+                            <div class="text-sm text-gray-200">Años de Experiencia</div>
+                        </div>
+                        <div class="bg-primary/20 backdrop-blur-lg rounded-xl shadow-lg p-6 border border-primary/30 text-center">
+                            <div class="text-3xl font-bold text-white">24/7</div>
+                            <div class="text-sm text-gray-200">Servicio Continuo</div>
+                        </div>
+                        <div class="bg-green-600/20 backdrop-blur-lg rounded-xl shadow-lg p-6 border border-green-400/30 text-center">
+                            <div class="text-3xl font-bold text-green-400">500+</div>
+                            <div class="text-sm text-gray-200">Empresas Atendidas</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl shadow-lg p-6 border border-white/20 text-center">
+                            <div class="text-3xl font-bold text-primary">100%</div>
+                            <div class="text-sm text-gray-200">Compromiso</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Highlight -->
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-primary/20 backdrop-blur rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-user-doctor text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Profesionales Certificados</h3>
+                                <p class="text-gray-200">Equipo médico especializado</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm">
+                            Nuestro equipo cuenta con profesionales altamente capacitados en medicina ocupacional, 
+                            seguridad industrial y gestión de emergencias, disponibles las 24 horas del día.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
-    <section class="py-20 mt-20 bg-white">
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h1 class="text-4xl lg:text-5xl font-bold text-dark mb-6">Servicios de Seguridad Laboral InnovaPrev</h1>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-                    InnovaPrev ofrece servicios especializados de seguridad laboral, prevención de riesgos y gestión de emergencias 
-                    para empresas en todo Perú. Nuestro equipo de profesionales certificados brinda soluciones integrales que incluyen 
-                    planes de emergencia, capacitación SST, medicina ocupacional, auditorías de seguridad y consultoría especializada 
-                    en prevención de riesgos laborales.
-                </p>
-                
+                <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-6">Nuestros Servicios Especializados</h2>
                 <div class="bg-primary/10 p-6 rounded-xl mb-8 max-w-4xl mx-auto">
-                    <h2 class="text-2xl font-bold text-primary mb-4">¿Por qué elegir nuestros servicios?</h2>
+                    <h3 class="text-2xl font-bold text-primary mb-4">¿Por qué elegir InnovaPrev?</h3>
                     <p class="text-gray-700 leading-relaxed">
                         Con más de 10 años de experiencia en seguridad industrial, OSDI Consultoría Capacitación y Prevención S.A.C. 
                         (InnovaPrev) se ha consolidado como líder en servicios de emergencias y prevención de riesgos. Trabajamos con 
-                        empresas de diversos sectores, adaptando nuestras soluciones a las necesidades específicas de cada organización 
-                        y garantizando el cumplimiento de todas las normativas peruanas de seguridad y salud en el trabajo.
+                        empresas de diversos sectores, adaptando nuestras soluciones a las necesidades específicas de cada organización.
                     </p>
                 </div>
             </div>

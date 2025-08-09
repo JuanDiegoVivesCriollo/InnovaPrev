@@ -77,8 +77,8 @@ class InnovaApp {
                 }
 
                 // Load navbar with timeout
-                const navbarPromise = this.fetchWithTimeout('content/navbar.html', 5000);
-                const footerPromise = this.fetchWithTimeout('content/footer.html', 5000);
+                const navbarPromise = this.fetchWithTimeout('navbar.html', 5000);
+                const footerPromise = this.fetchWithTimeout('footer.html', 5000);
                 
                 const [navbarResponse, footerResponse] = await Promise.all([navbarPromise, footerPromise]);
                 
@@ -162,7 +162,7 @@ class InnovaApp {
             let content = this.cache.get(pageName);
             
             if (!content) {
-                const response = await this.fetchWithTimeout(`content/${pageName}.html`, 10000);
+                const response = await this.fetchWithTimeout(`${pageName}.html`, 10000);
                 if (response.ok) {
                     content = await response.text();
                     this.cache.set(pageName, content);

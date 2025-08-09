@@ -1,66 +1,84 @@
 <!-- Main Content -->
 <main class="min-h-screen">
     <!-- Hero Section -->
-    <section class="relative py-20 mt-20 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, rgba(232, 90, 51, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%), url('/sobre-nosotros.webp') center/cover no-repeat;">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
-                    <div class="inline-flex items-center bg-primary/20 rounded-full px-6 py-3">
+                <div class="text-white space-y-8">
+                    <div class="inline-flex items-center bg-primary/20 backdrop-blur rounded-full px-6 py-3 border border-primary/30">
                         <i class="fa-solid fa-shield-halved text-primary mr-3"></i>
-                        <span class="text-primary font-semibold">Sobre Nosotros</span>
+                        <span class="text-white font-semibold">Sobre Nosotros</span>
                     </div>
                     
-                    <h1 class="text-4xl lg:text-5xl font-bold text-dark leading-tight">
-                        <span class="text-primary">Más de 10 años</span><br>
-                        protegiendo empresas en Perú
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        <span class="text-white">Más de</span>
+                        <span class="text-primary block">10 años</span>
+                        <span class="text-white">protegiendo empresas</span>
                     </h1>
                     
-                    <p class="text-xl text-gray-600 leading-relaxed">
-                        OSDI Consultoría Capacitación y Prevención S.A.C., conocida comercialmente como 
+                    <p class="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-2xl">
+                        <strong class="text-primary">OSDI Consultoría Capacitación y Prevención S.A.C.</strong>, conocida comercialmente como 
                         <strong class="text-primary">InnovaPrev</strong>, es una empresa peruana líder en servicios 
                         de seguridad laboral, prevención de riesgos y gestión de emergencias.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="servicios.html" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center">
+                        <a href="#servicios" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
                             <i class="fa-solid fa-rocket mr-3"></i>
                             Nuestros Servicios
                         </a>
-                        <a href="contacto.html" class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                        <a href="#contacto" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center">
                             <i class="fa-solid fa-envelope mr-3"></i>
                             Contáctanos
                         </a>
                     </div>
+                    
+                    <div class="flex items-center gap-6 text-sm">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span>Empresa certificada</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span>RUC: 20607637671</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span>Fundada en 2014</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="relative">
-                    <div class="bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                        <div class="bg-primary/10 rounded-xl p-6 mb-6">
-                            <h3 class="text-2xl font-bold text-primary mb-4">OSDI S.A.C.</h3>
-                            <div class="space-y-2 text-gray-700">
-                                <p><strong>RUC:</strong> 20607637671</p>
-                                <p><strong>Razón Social:</strong> OSDI Consultoría Capacitación y Prevención S.A.C.</p>
-                                <p><strong>Nombre Comercial:</strong> InnovaPrev</p>
-                                <p><strong>Fundación:</strong> 2014</p>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <div class="bg-primary/20 backdrop-blur rounded-xl p-6 mb-6 border border-primary/30">
+                            <h3 class="text-2xl font-bold text-white mb-4">OSDI S.A.C.</h3>
+                            <div class="space-y-2 text-gray-200">
+                                <p><strong className="text-primary">RUC:</strong> 20607637671</p>
+                                <p><strong className="text-primary">Razón Social:</strong> OSDI Consultoría Capacitación y Prevención S.A.C.</p>
+                                <p><strong className="text-primary">Nombre Comercial:</strong> InnovaPrev</p>
+                                <p><strong className="text-primary">Fundación:</strong> 2014</p>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4">
                             <div class="text-center">
                                 <div class="text-3xl font-bold text-primary">10+</div>
-                                <p class="text-sm text-gray-600">Años de Experiencia</p>
+                                <p class="text-sm text-gray-200">Años de Experiencia</p>
                             </div>
                             <div class="text-center">
                                 <div class="text-3xl font-bold text-primary">500+</div>
-                                <p class="text-sm text-gray-600">Empresas Atendidas</p>
+                                <p class="text-sm text-gray-200">Empresas Atendidas</p>
                             </div>
                             <div class="text-center">
                                 <div class="text-3xl font-bold text-primary">24/7</div>
-                                <p class="text-sm text-gray-600">Disponibilidad</p>
+                                <p class="text-sm text-gray-200">Disponibilidad</p>
                             </div>
                             <div class="text-center">
                                 <div class="text-3xl font-bold text-primary">100%</div>
-                                <p class="text-sm text-gray-600">Compromiso</p>
+                                <p class="text-sm text-gray-200">Compromiso</p>
                             </div>
                         </div>
                     </div>
