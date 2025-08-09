@@ -1,27 +1,134 @@
-# Node.js dependencies
+# InnovaPrev - .gitignore
+
+# ===========================
+# Dependencies
+# ===========================
 node_modules/
-
-# Development files
-src/
-package.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 package-lock.json
-tailwind.config.js
+yarn.lock
 
-# Critical CSS development file (inline in production)
-dist/critical.css
+# ===========================
+# Build outputs
+# ===========================
+dist/
+build/
+.cache/
 
-# Development documentation
-OPTIMIZACION.md
-OPTIMIZACION-COMPLETA.md
-DESPLIEGUE.md
+# ===========================
+# Environment variables
+# ===========================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# System files
-.DS_Store
-Thumbs.db
-*.log
-
-# IDE files
+# ===========================
+# IDE and Editor files
+# ===========================
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===========================
+# Logs
+# ===========================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ===========================
+# Font Awesome assets (mantener solo lo necesario)
+# ===========================
+# Excluir archivos fuente completos de FA
+assets/svgs-full/
+assets/svgs/
+assets/otfs/
+assets/LICENSE.txt
+assets/metadata/
+
+# ===========================
+# Archivos temporales del sistema
+# ===========================
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# ===========================
+# Archivos de respaldo
+# ===========================
+*.bak
+*.backup
+*~
+*.orig
+
+# ===========================
+# Archivos comprimidos temporales
+# ===========================
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+
+# ===========================
+# Archivos del navegador/testing
+# ===========================
+.nyc_output/
+coverage/
+cypress/videos/
+cypress/screenshots/
+
+# ===========================
+# Service Worker cache
+# ===========================
+sw-cache/
+workbox-*
+
+# ===========================
+# Archivos de análisis
+# ===========================
+bundle-analyzer-report.html
+stats.json
+
+# ===========================
+# Certificados SSL locales
+# ===========================
+*.pem
+*.key
+*.crt
+
+# ===========================
+# Archivos específicos del proyecto (comentados para referencia)
+# ===========================
+# Mantener estos archivos en el repo:
+# - favicon.ico, favicon-*.png
+# - Diseñosintítulo.svg (logo principal)
+# - assets/css/fonts.css (fuentes locales)
+# - assets/css/fa.min.css (iconos mínimos)
+# - dist/output.css (CSS compilado de Tailwind)
+
+# ===========================
+# Archivos obsoletos/experimentales
+# ===========================
+*_old.*
+*_backup.*
+*_test.*
+experimental/
+sandbox/
+
+# ===========================
+# Archivos de configuración local
+# ===========================
+.env.local
+config.local.js
