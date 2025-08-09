@@ -4,7 +4,7 @@ const ASSETS=[
   '/','/index.html','/inicio.html','/sobre-nosotros.html','/servicios.html','/contacto.html',
   '/dist/output.css','/assets/css/fonts.css','/assets/css/fa.min.css',
   '/assets/js/site-common.js','/app.js','/assets/js/anime.min.js',
-  '/HeroEmergencia.webp','/Diseño sin título.svg'
+  '/HeroEmergencia.webp','/Diseñosintítulo.svg'
 ];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE_STATIC).then(c=>c.addAll(ASSETS)));

@@ -1,40 +1,56 @@
-/* Subset FontAwesome - incluir sólo iconos usados. Generar woff2 reducido. */
-@font-face {
-  font-family:'FA-Subset';
-  src:url('../fonts/fa-subset.woff2') format('woff2');
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-/* Ejemplos de mapeo (unicode asignado en subset) adaptar según exportación */
-.fas {font-family:'FA-Subset';font-weight:400;display:inline-block;line-height:1;}
-.fa-times:before{content:"\e900";}
-.fa-question-circle:before{content:"\e901";}
-.fa-users:before{content:"\e902";}
-.fa-bullseye:before{content:"\e903";}
-.fa-eye:before{content:"\e904";}
-.fa-heart:before{content:"\e905";}
-.fa-clipboard-list:before{content:"\e906";}
-.fa-exclamation-triangle:before{content:"\e907";}
-.fa-tools:before{content:"\e908";}
-.fa-compass:before{content:"\e909";}
-.fa-user-md:before{content:"\e90a";}
-.fa-file-contract:before{content:"\e90b";}
-.fa-industry:before{content:"\e90c";}
-.fa-hard-hat:before{content:"\e90d";}
-.fa-cogs:before{content:"\e90e";}
-.fa-oil-can:before{content:"\e90f";}
-.fa-arrow-right:before{content:"\e910";}
-.fa-phone:before{content:"\e911";}
-.fa-clock:before{content:"\e912";}
-.fa-certificate:before{content:"\e913";}
-.fa-handshake:before{content:"\e914";}
-.fa-graduation-cap:before{content:"\e915";}
-.fa-shopping-cart:before{content:"\e916";}
-.fa-building:before{content:"\e917";}
-.fa-hospital:before{content:"\e918";}
-.fa-hotel:before{content:"\e919";}
-.fa-utensils:before{content:"\e91a";}
-.fa-calendar-alt:before{content:"\e91b";}
-.fa-envelope:before{content:"\e91c";}
-.fa-refresh:before{content:"\e91d";}
+/* Font Awesome 7 Free - Solo los íconos utilizados */
+.fa-solid{font-family:"Font Awesome 6 Free";font-weight:900;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;-webkit-font-smoothing:antialiased}
+.fa-brands{font-family:"Font Awesome 6 Brands";font-weight:400;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;-webkit-font-smoothing:antialiased}
+
+/* Íconos sólidos actualizados */
+.fa-gears:before{content:"\f085"}
+.fa-share-nodes:before{content:"\f1e0"}
+.fa-triangle-exclamation:before{content:"\f071"}
+.fa-xmark:before{content:"\f00d"}
+.fa-screwdriver-wrench:before{content:"\f7d9"}
+.fa-user-doctor:before{content:"\f0f0"}
+.fa-helmet-safety:before{content:"\f807"}
+.fa-calendar-days:before{content:"\f073"}
+.fa-arrows-rotate:before{content:"\f021"}
+
+/* Íconos que se mantienen igual */
+.fa-clipboard-list:before{content:"\f46d"}
+.fa-compass:before{content:"\f14e"}
+.fa-file-contract:before{content:"\f56c"}
+.fa-industry:before{content:"\f275"}
+.fa-oil-can:before{content:"\f613"}
+.fa-cogs:before{content:"\f085"}
+.fa-link:before{content:"\f0c1"}
+.fa-chevron-right:before{content:"\f054"}
+.fa-phone:before{content:"\f095"}
+.fa-envelope:before{content:"\f0e0"}
+.fa-clock:before{content:"\f017"}
+.fa-handshake:before{content:"\f2b5"}
+.fa-building:before{content:"\f1ad"}
+.fa-certificate:before{content:"\f0a3"}
+.fa-graduation-cap:before{content:"\f19d"}
+.fa-shopping-cart:before{content:"\f07a"}
+.fa-hospital:before{content:"\f0f8"}
+.fa-hotel:before{content:"\f594"}
+.fa-utensils:before{content:"\f2e7"}
+.fa-question-circle:before{content:"\f059"}
+.fa-users:before{content:"\f0c0"}
+.fa-bullseye:before{content:"\f140"}
+.fa-eye:before{content:"\f06e"}
+.fa-heart:before{content:"\f004"}
+.fa-check-circle:before{content:"\f058"}
+.fa-exclamation-circle:before{content:"\f06a"}
+.fa-spinner:before{content:"\f110"}
+
+/* Íconos de marcas/brands */
+.fa-whatsapp:before{content:"\f232"}
+.fa-facebook:before{content:"\f09a"}
+.fa-twitter:before{content:"\f099"}
+.fa-linkedin:before{content:"\f08c"}
+.fa-instagram:before{content:"\f16d"}
+.fa-youtube:before{content:"\f167"}
+.fa-tiktok:before{content:"\e07b"}
+
+/* Font faces - Versión minificada */
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:swap;src:url("../webfonts/fa-solid-900.woff2") format("woff2")}
+@font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:swap;src:url("../webfonts/fa-brands-400.woff2") format("woff2")}

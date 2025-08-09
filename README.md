@@ -63,7 +63,7 @@ InnovaPrev/
 - **CSS3**: Estilos modernos con variables CSS, Grid y Flexbox
 - **JavaScript ES6+**: Funcionalidad interactiva
 - **Anime.js**: Librería de animaciones
-- **Font Awesome**: Iconos vectoriales
+- **Font Awesome 7**: Iconos vectoriales (actualizado)
 - **Google Fonts**: Tipografía Poppins
 
 ## Características Técnicas
@@ -146,7 +146,7 @@ Las animaciones se pueden personalizar en `script.js` modificando los parámetro
 
 ## 🔧 Optimización Adicional (2025)
 - Fuentes Poppins autohospedadas (fonts.css) con subset WOFF2 + font-display:swap.
-- Eliminado CDN de Font Awesome / Anime.js → versiones locales (fa.min.css, anime.min.js).
+- Font Awesome 7 con íconos actualizados: fa-gears, fa-share-nodes, fa-triangle-exclamation, fa-xmark, fa-screwdriver-wrench, fa-user-doctor, fa-helmet-safety, fa-calendar-days, fa-arrows-rotate.
 - Preload estratégico: CSS crítico, fuentes e imágenes LCP.
 - Prefetch en reposo de páginas internas (SPA) con requestIdleCallback.
 - Service Worker (sw.js) cache-first para assets estáticos y SWR para páginas HTML.
