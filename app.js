@@ -75,7 +75,7 @@ class InnovaApp {
     async loadNavbar() {
         try {
             console.log('📋 Cargando navbar...');
-            const response = await fetch('navbar.html');
+            const response = await fetch('/navbar.html');
             if (response.ok) {
                 const navbarHTML = await response.text();
                 const container = document.getElementById('navbar-container');
@@ -97,7 +97,7 @@ class InnovaApp {
     async loadFooter() {
         try {
             console.log('📋 Cargando footer...');
-            const response = await fetch('footer.html');
+            const response = await fetch('/footer.html');
             if (response.ok) {
                 const footerHTML = await response.text();
                 const container = document.getElementById('footer-container');
@@ -138,7 +138,7 @@ class InnovaApp {
             
             if (!content) {
                 console.log(`🌐 Fetching ${pageName}.html...`);
-                const response = await fetch(`${pageName}.html`);
+                const response = await fetch(`/${pageName}.html`);
                 
                 if (response.ok) {
                     content = await response.text();

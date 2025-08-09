@@ -109,15 +109,15 @@
     </style>
     
     <!-- Preload Resources -->
-    <link rel="preload" as="image" href="HeroEmergencia.webp">
+    <link rel="preload" as="image" href="/HeroEmergencia.webp">
     
     <!-- Critical CSS Loading Strategy -->
-    <link rel="preload" as="style" href="assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" as="style" href="dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="/assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="/dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- Fallback CSS Loading -->
-    <link rel="stylesheet" href="assets/css/fonts.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="dist/output.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/assets/css/fonts.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/dist/output.css" media="print" onload="this.media='all'">
     
     <!-- Google Fonts Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,12 +130,12 @@
         const ensureCSS = () => {
             const tailwindLink = document.createElement('link');
             tailwindLink.rel = 'stylesheet';
-            tailwindLink.href = 'dist/output.css';
+            tailwindLink.href = '/dist/output.css';
             tailwindLink.setAttribute('data-emergency', 'true');
             
             const fontsLink = document.createElement('link');
             fontsLink.rel = 'stylesheet';
-            fontsLink.href = 'assets/css/fonts.css';
+            fontsLink.href = '/assets/css/fonts.css';
             fontsLink.setAttribute('data-emergency', 'true');
             
             // Google Fonts fallback
@@ -145,7 +145,7 @@
             googleFonts.setAttribute('data-fallback', 'true');
             
             // Check if CSS is already loaded
-            const existingTailwind = document.querySelector('link[href="dist/output.css"]');
+            const existingTailwind = document.querySelector('link[href="/dist/output.css"]');
             const existingFonts = document.querySelector('link[href*="fonts"]');
             
             if (!existingTailwind) {
@@ -163,8 +163,8 @@
     </script>
     
     <noscript>
-        <link rel="stylesheet" href="assets/css/fonts.css">
-        <link rel="stylesheet" href="dist/output.css">
+        <link rel="stylesheet" href="/assets/css/fonts.css">
+        <link rel="stylesheet" href="/dist/output.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
     
