@@ -112,11 +112,11 @@
     <link rel="preload" as="image" href="HeroEmergencia.webp">
     
     <!-- Critical CSS Loading Strategy -->
-    <link rel="preload" as="style" href="assets/fonts/local-fonts.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="assets/css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" as="style" href="dist/output.css" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- Fallback CSS Loading -->
-    <link rel="stylesheet" href="assets/fonts/local-fonts.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/fonts.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="dist/output.css" media="print" onload="this.media='all'">
     
     <!-- Google Fonts Fallback -->
@@ -135,7 +135,7 @@
             
             const fontsLink = document.createElement('link');
             fontsLink.rel = 'stylesheet';
-            fontsLink.href = 'assets/fonts/local-fonts.css';
+            fontsLink.href = 'assets/css/fonts.css';
             fontsLink.setAttribute('data-emergency', 'true');
             
             // Google Fonts fallback
@@ -163,7 +163,7 @@
     </script>
     
     <noscript>
-        <link rel="stylesheet" href="assets/fonts/local-fonts.css">
+        <link rel="stylesheet" href="assets/css/fonts.css">
         <link rel="stylesheet" href="dist/output.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
