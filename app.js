@@ -1,314 +1,261 @@
 /**
- * InnovaPrev SPA System - Fixed Version
- * Soluciona problemas de recarga y CSS
+ * InnovaPrev SPA System
+ * Sistema de navegación de página única
  */
 
 class InnovaApp {
     constructor() {
-        this.currentPage = '';
+        this.currentPage = 'inicio';
         this.cache = new Map();
-        this.componentsLoaded = false;
         this.isInitialized = false;
+        console.log('🚀 InnovaApp creado');
     }
 
+    // Detectar la página actual basada en la URL
+    getCurrentPage() {
+        const hash = window.location.hash.substring(1);
+        const validPages = ['inicio', 'sobre-nosotros', 'servicios', 'contacto'];
+        
+        if (hash && validPages.includes(hash)) {
+            return hash;
+        }
+        
+        return 'inicio';
+    }
+
+    // Inicializar la aplicación
     async init() {
         if (this.isInitialized) return;
         
         try {
-            // Ensure DOM is ready
+            console.log('🛡️ Iniciando InnovaPrev SPA...');
+            
+            // Esperar a que el DOM esté listo
             await this.waitForDOM();
             
-            console.log('🛡️ Inicializando InnovaPrev SPA...');
+            // Cargar componentes
+            await this.loadNavbar();
+            await this.loadFooter();
             
-            // Load components first
-            await this.loadComponents();
-            
-            // Setup navigation
+            // Configurar navegación
             this.setupNavigation();
+            this.setupMobileMenu();
             
-            // Load initial page
-            await this.loadPage(this.getCurrentPage());
+            // Cargar página inicial
+            const initialPage = this.getCurrentPage();
+            await this.loadPage(initialPage);
             
-            // Setup mobile menu after everything is loaded
-            setTimeout(() => this.setupMobileMenu(), 200);
+            // Ocultar pantalla de carga
+            this.hideLoadingScreen();
             
             this.isInitialized = true;
-            console.log('✅ InnovaPrev SPA inicializado correctamente');
+            console.log('✅ InnovaPrev SPA listo');
             
         } catch (error) {
             console.error('❌ Error inicializando SPA:', error);
-            this.handleInitError();
         }
     }
 
+    // Esperar a que el DOM esté listo
     async waitForDOM() {
         return new Promise((resolve) => {
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            if (document.readyState === 'complete') {
                 resolve();
             } else {
-                document.addEventListener('DOMContentLoaded', resolve);
+                window.addEventListener('load', resolve);
             }
         });
     }
 
-    handleInitError() {
-        // Fallback initialization after a delay
-        setTimeout(() => {
-            console.log('� Reintentando inicialización...');
-            this.isInitialized = false;
-            this.init();
-        }, 1000);
-    }
-
-    async loadComponents() {
-        const maxRetries = 3;
-        let retries = 0;
-        
-        while (retries < maxRetries) {
-            try {
-                console.log(`📦 Cargando componentes... (intento ${retries + 1})`);
-                
-                // Check if containers exist
-                const navbarContainer = document.getElementById('navbar-container');
-                const footerContainer = document.getElementById('footer-container');
-                
-                if (!navbarContainer || !footerContainer) {
-                    throw new Error('Contenedores no encontrados');
-                }
-
-                // Load navbar with timeout
-                const navbarPromise = this.fetchWithTimeout('navbar.html', 5000);
-                const footerPromise = this.fetchWithTimeout('footer.html', 5000);
-                
-                const [navbarResponse, footerResponse] = await Promise.all([navbarPromise, footerPromise]);
-                
-                if (navbarResponse.ok) {
-                    navbarContainer.innerHTML = await navbarResponse.text();
-                }
-
-                if (footerResponse.ok) {
-                    footerContainer.innerHTML = await footerResponse.text();
-                }
-
-                this.componentsLoaded = true;
-                console.log('✅ Componentes cargados exitosamente');
-                
-                // Wait for DOM update and rewrite links
-                await this.waitForDOMUpdate();
-                this.rewriteLinks();
-                
-                return;
-                
-            } catch (error) {
-                retries++;
-                console.warn(`⚠️ Error cargando componentes (intento ${retries}):`, error);
-                
-                if (retries >= maxRetries) {
-                    console.error('❌ Falló la carga de componentes después de 3 intentos');
-                    throw error;
-                }
-                
-                // Wait before retry
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-        }
-    }
-
-    async fetchWithTimeout(url, timeout = 5000) {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
-        
+    // Cargar navbar
+    async loadNavbar() {
         try {
-            const response = await fetch(url, { signal: controller.signal });
-            clearTimeout(timeoutId);
-            return response;
+            console.log('📋 Cargando navbar...');
+            const response = await fetch('navbar.html');
+            if (response.ok) {
+                const navbarHTML = await response.text();
+                const container = document.getElementById('navbar-container');
+                if (container) {
+                    container.innerHTML = navbarHTML;
+                    console.log('✅ Navbar cargado');
+                } else {
+                    console.error('❌ navbar-container no encontrado');
+                }
+            } else {
+                console.error('❌ Error cargando navbar:', response.status);
+            }
         } catch (error) {
-            clearTimeout(timeoutId);
-            throw error;
+            console.error('❌ Error al cargar navbar:', error);
         }
     }
 
-    async waitForDOMUpdate() {
-        return new Promise(resolve => {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(resolve);
-            });
-        });
+    // Cargar footer
+    async loadFooter() {
+        try {
+            console.log('📋 Cargando footer...');
+            const response = await fetch('footer.html');
+            if (response.ok) {
+                const footerHTML = await response.text();
+                const container = document.getElementById('footer-container');
+                if (container) {
+                    container.innerHTML = footerHTML;
+                    console.log('✅ Footer cargado');
+                } else {
+                    console.error('❌ footer-container no encontrado');
+                }
+            } else {
+                console.error('❌ Error cargando footer:', response.status);
+            }
+        } catch (error) {
+            console.error('❌ Error al cargar footer:', error);
+        }
     }
 
-    getCurrentPage() {
-        const hash = window.location.hash.replace('#', '').trim().toLowerCase();
-        const validPages = ['inicio', 'sobre-nosotros', 'servicios', 'contacto'];
-        return validPages.includes(hash) ? hash : 'inicio';
-    }
-
+    // Cargar página
     async loadPage(pageName) {
-        if (!this.componentsLoaded) {
-            console.warn('⚠️ Componentes no cargados aún, esperando...');
-            await this.loadComponents();
-        }
-        
-        if (this.currentPage === pageName) return;
-
         console.log(`📄 Cargando página: ${pageName}`);
-        const container = document.getElementById('content-container');
         
+        if (this.currentPage === pageName && this.isInitialized) {
+            console.log(`⚠️ Página ${pageName} ya está cargada`);
+            return;
+        }
+
+        const container = document.getElementById('content-container');
         if (!container) {
             console.error('❌ Content container no encontrado');
             return;
         }
-        
+
+        // Mostrar loading
+        this.showLoading();
+
         try {
             let content = this.cache.get(pageName);
             
             if (!content) {
-                const response = await this.fetchWithTimeout(`${pageName}.html`, 10000);
+                console.log(`🌐 Fetching ${pageName}.html...`);
+                const response = await fetch(`${pageName}.html`);
+                
                 if (response.ok) {
                     content = await response.text();
                     this.cache.set(pageName, content);
+                    console.log(`✅ ${pageName}.html cargado (${content.length} chars)`);
                 } else {
-                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                    console.log(`❌ Error fetch: ${response.status} ${response.statusText}`);
+                    throw new Error(`No se pudo cargar ${pageName}.html - Status: ${response.status}`);
                 }
+            } else {
+                console.log(`🗂️ Usando contenido en caché para ${pageName}`);
             }
-            
-            // Clear container and add content
-            container.innerHTML = '';
-            await this.waitForDOMUpdate();
-            container.innerHTML = content;
-            
-            this.currentPage = pageName;
-            
-            // Wait for content to render before executing scripts
-            await this.waitForDOMUpdate();
-            
-            // Update UI elements
-            this.updateNavigation(pageName);
-            this.updateTitle(pageName);
-            
-            // Execute page-specific scripts
-            setTimeout(() => this.executePageScripts(pageName), 100);
-            
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            console.log(`✅ Página ${pageName} cargada exitosamente`);
-            
+
+            // Actualizar contenido con fade
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.innerHTML = content;
+                container.style.opacity = '1';
+                
+                // Actualizar estado
+                this.currentPage = pageName;
+                this.updateNavigation(pageName);
+                this.updateTitle(pageName);
+                this.executePageScripts(pageName);
+                this.hideLoading();
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                console.log(`✅ Página ${pageName} mostrada`);
+                
+            }, 150);
+
         } catch (error) {
             console.error(`❌ Error cargando ${pageName}:`, error);
             container.innerHTML = this.getErrorHTML();
+            this.hideLoading();
         }
     }
 
+    // Configurar navegación
     setupNavigation() {
-        // Handle link clicks
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a[href]');
-            if (!link) return;
-
-            const href = link.getAttribute('href');
-            if (this.isInternalLink(href)) {
-                e.preventDefault();
-                const page = this.getPageFromHref(href);
-                window.location.hash = page === 'inicio' ? '' : `#${page}`;
-                this.loadPage(page);
-                this.closeMobileMenu();
-            }
-        });
-
-        // Handle hash changes (back/forward)
-        window.addEventListener('hashchange', () => {
-            this.loadPage(this.getCurrentPage());
-        });
-    }
-
-    isInternalLink(href) {
-        if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+        console.log('🔧 Configurando navegación SPA...');
         
-        if (href.startsWith('#')) {
-            const route = href.slice(1).toLowerCase();
-            return ['inicio', 'sobre-nosotros', 'servicios', 'contacto', ''].includes(route);
-        }
-        
-        return ['index.html', 'inicio.html', 'sobre-nosotros.html', 'servicios.html', 'contacto.html']
-            .some(page => href.toLowerCase().includes(page));
-    }
-
-    getPageFromHref(href) {
-        if (href.startsWith('#')) {
-            const route = href.slice(1).toLowerCase();
-            return ['inicio', 'sobre-nosotros', 'servicios', 'contacto'].includes(route) ? route : 'inicio';
-        }
-        
-        const h = href.toLowerCase();
-        if (h.includes('sobre-nosotros')) return 'sobre-nosotros';
-        if (h.includes('servicios')) return 'servicios';
-        if (h.includes('contacto')) return 'contacto';
-        return 'inicio';
-    }
-
-    rewriteLinks() {
-        try {
-            const linkMap = {
-                'index.html': '#inicio',
-                'inicio.html': '#inicio',
-                'sobre-nosotros.html': '#sobre-nosotros',
-                'servicios.html': '#servicios',
-                'contacto.html': '#contacto'
-            };
-
-            let rewritten = 0;
-            const links = document.querySelectorAll('a[href]');
-            
-            links.forEach(link => {
-                if (!link) return;
-                
-                const href = link.getAttribute('href');
-                if (!href || href.startsWith('#') || href.startsWith('http') || 
-                    href.startsWith('mailto:') || href.startsWith('tel:')) return;
-                
-                const match = Object.keys(linkMap).find(key => 
-                    href.toLowerCase().includes(key)
-                );
-                
-                if (match) {
-                    link.setAttribute('href', linkMap[match]);
-                    rewritten++;
+        // Pequeño delay para asegurar que los componentes estén cargados
+        setTimeout(() => {
+            // Escuchar clicks en enlaces hash
+            document.body.addEventListener('click', (e) => {
+                const link = e.target.closest('a[href^="#"]');
+                if (link) {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+                    const page = href.substring(1) || 'inicio';
+                    console.log('🔗 Click en enlace:', href, '→', page);
+                    console.log('🔗 Link element:', link);
+                    console.log('🔗 Event target:', e.target);
+                    
+                    // Cerrar menú móvil si está abierto
+                    this.closeMobileMenu && this.closeMobileMenu();
+                    
+                    // Navegar a la página
+                    this.navigateToPage(page);
+                } else {
+                    console.log('🚫 Click no es en enlace hash:', e.target);
                 }
             });
+            
+            console.log('✅ Event listeners configurados');
+        }, 500);
 
-            if (rewritten > 0) {
-                console.log(`🔗 ${rewritten} enlaces reescritos`);
-            }
-        } catch (error) {
-            console.error('❌ Error reescribiendo enlaces:', error);
-        }
+        // Manejar cambios de hash
+        window.addEventListener('hashchange', () => {
+            const page = this.getCurrentPage();
+            console.log('🔄 Hash cambió a:', page);
+            this.loadPage(page);
+        });
+
+        // Manejar navegación del navegador
+        window.addEventListener('popstate', () => {
+            const page = this.getCurrentPage();
+            console.log('🔄 Popstate a:', page);
+            this.loadPage(page);
+        });
+        
+        console.log('✅ Navegación configurada');
     }
 
+    // Navegar a una página específica
+    async navigateToPage(pageName) {
+        if (pageName === this.currentPage) {
+            console.log(`⚠️ Ya estás en ${pageName}`);
+            return;
+        }
+
+        console.log('🧭 Navegando a:', pageName);
+        
+        // Actualizar hash
+        window.location.hash = pageName;
+        
+        // Cargar página
+        await this.loadPage(pageName);
+    }
+
+    // Actualizar navegación activa
     updateNavigation(pageName) {
         setTimeout(() => {
             try {
                 // Reset all nav links
                 const navLinks = document.querySelectorAll('.nav-link, .sidebar-link');
                 navLinks.forEach(link => {
-                    if (link) {
-                        link.classList.remove('text-primary', 'bg-gray-50');
-                        link.classList.add('text-gray-700');
-                    }
+                    link.classList.remove('text-primary', 'bg-gray-50');
+                    link.classList.add('text-gray-700');
                 });
 
                 // Highlight current page links
-                const selectors = pageName === 'inicio' ? 
-                    'a[href="#inicio"], a[href="index.html"], a[href="inicio.html"]' :
-                    `a[href="#${pageName}"], a[href="${pageName}.html"]`;
-                    
-                const activeLinks = document.querySelectorAll(selectors);
+                const activeLinks = document.querySelectorAll(`a[href="#${pageName}"]`);
                 activeLinks.forEach(link => {
-                    if (link) {
-                        link.classList.add('text-primary');
-                        link.classList.remove('text-gray-700');
-                        if (link.classList.contains('sidebar-link')) {
-                            link.classList.add('bg-gray-50');
-                        }
+                    link.classList.add('text-primary');
+                    link.classList.remove('text-gray-700');
+                    if (link.classList.contains('sidebar-link')) {
+                        link.classList.add('bg-gray-50');
                     }
                 });
                 
@@ -316,9 +263,10 @@ class InnovaApp {
             } catch (error) {
                 console.error('❌ Error actualizando navegación:', error);
             }
-        }, 150);
+        }, 100);
     }
 
+    // Actualizar título de página
     updateTitle(pageName) {
         const titles = {
             'inicio': 'INNOVA PREV - Protegemos lo que Importa',
@@ -329,18 +277,46 @@ class InnovaApp {
         document.title = titles[pageName] || titles['inicio'];
     }
 
+    // Mostrar loading
+    showLoading() {
+        const loading = document.getElementById('loading');
+        if (loading) loading.style.display = 'flex';
+    }
+
+    // Ocultar loading
+    hideLoading() {
+        const loading = document.getElementById('loading');
+        if (loading) loading.style.display = 'none';
+    }
+
+    // Ocultar pantalla de carga inicial
+    hideLoadingScreen() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    // Ejecutar scripts específicos de página
     executePageScripts(pageName) {
         switch(pageName) {
             case 'inicio':
-                this.initCounters();
+                this.initInicioScripts();
                 break;
             case 'contacto':
-                this.initContactForm();
+                this.initContactoScripts();
                 break;
         }
     }
 
-    initCounters() {
+    // Scripts específicos de inicio
+    initInicioScripts() {
+        console.log('🎬 Inicializando scripts de inicio...');
+        
+        // Inicializar contadores
         setTimeout(() => {
             const counters = document.querySelectorAll('.counter');
             if (counters.length === 0) return;
@@ -354,21 +330,21 @@ class InnovaApp {
                 });
             });
 
-            const statsSection = document.querySelector('.counter-grid');
+            const statsSection = document.querySelector('.counter-grid, .stats-section');
             if (statsSection) observer.observe(statsSection);
-        }, 200);
+        }, 500);
     }
 
+    // Animar contadores
     animateCounters() {
         document.querySelectorAll('.counter').forEach(counter => {
-            const baseTarget = parseInt(counter.getAttribute('data-target'));
+            const baseTarget = parseInt(counter.getAttribute('data-target')) || parseInt(counter.textContent) || 0;
             
-            // Generate realistic variations
             let finalTarget;
             switch(baseTarget) {
-                case 7: finalTarget = 7 + Math.floor(Math.random() * 3); break; // 7-9
-                case 322: finalTarget = 322 + Math.floor(Math.random() * 17) - 8; break; // 314-330
-                case 954: finalTarget = 954 + Math.floor(Math.random() * 25) - 12; break; // 942-966
+                case 7: finalTarget = 7 + Math.floor(Math.random() * 3); break;
+                case 322: finalTarget = 322 + Math.floor(Math.random() * 17) - 8; break;
+                case 954: finalTarget = 954 + Math.floor(Math.random() * 25) - 12; break;
                 default: finalTarget = baseTarget;
             }
 
@@ -389,7 +365,10 @@ class InnovaApp {
         });
     }
 
-    initContactForm() {
+    // Scripts específicos de contacto
+    initContactoScripts() {
+        console.log('📞 Inicializando scripts de contacto...');
+        
         const form = document.querySelector('#contact-form');
         if (form) {
             form.addEventListener('submit', (e) => {
@@ -410,60 +389,62 @@ class InnovaApp {
         }
     }
 
+    // Configurar menú móvil
     setupMobileMenu() {
-        let isOpen = false;
-
-        const toggle = () => {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const hamburger = document.getElementById('hamburger');
-
-            if (isOpen) {
-                sidebar?.classList.add('translate-x-full');
-                sidebar?.classList.remove('translate-x-0');
-                overlay?.classList.add('invisible', 'opacity-0');
-                overlay?.classList.remove('opacity-100');
-                document.body.style.overflow = '';
-                
-                // Reset hamburger animation
-                if (hamburger) {
-                    const bars = hamburger.querySelectorAll('.bar');
-                    bars.forEach((bar, i) => {
-                        bar.style.transform = '';
-                        bar.style.opacity = '1';
-                    });
-                }
-                isOpen = false;
-            } else {
-                sidebar?.classList.remove('translate-x-full');
-                sidebar?.classList.add('translate-x-0');
-                overlay?.classList.remove('invisible', 'opacity-0');
-                overlay?.classList.add('opacity-100');
-                document.body.style.overflow = 'hidden';
-                
-                // Animate hamburger to X
-                if (hamburger) {
-                    const bars = hamburger.querySelectorAll('.bar');
-                    if (bars.length >= 3) {
-                        bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                        bars[1].style.opacity = '0';
-                        bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-                    }
-                }
-                isOpen = true;
-            }
-        };
-
-        this.closeMobileMenu = () => isOpen && toggle();
-
-        // Event listeners
         setTimeout(() => {
+            let isOpen = false;
+
+            const toggle = () => {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+                const hamburger = document.getElementById('hamburger');
+
+                if (isOpen) {
+                    sidebar?.classList.add('translate-x-full');
+                    sidebar?.classList.remove('translate-x-0');
+                    overlay?.classList.add('invisible', 'opacity-0');
+                    overlay?.classList.remove('opacity-100');
+                    document.body.style.overflow = '';
+                    
+                    // Reset hamburger
+                    if (hamburger) {
+                        const bars = hamburger.querySelectorAll('.bar');
+                        bars.forEach(bar => {
+                            bar.style.transform = '';
+                            bar.style.opacity = '1';
+                        });
+                    }
+                    isOpen = false;
+                } else {
+                    sidebar?.classList.remove('translate-x-full');
+                    sidebar?.classList.add('translate-x-0');
+                    overlay?.classList.remove('invisible', 'opacity-0');
+                    overlay?.classList.add('opacity-100');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animate hamburger to X
+                    if (hamburger) {
+                        const bars = hamburger.querySelectorAll('.bar');
+                        if (bars.length >= 3) {
+                            bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                            bars[1].style.opacity = '0';
+                            bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                        }
+                    }
+                    isOpen = true;
+                }
+            };
+
+            this.closeMobileMenu = () => isOpen && toggle();
+
+            // Event listeners
             document.getElementById('hamburger')?.addEventListener('click', toggle);
             document.getElementById('close-btn')?.addEventListener('click', toggle);
             document.getElementById('overlay')?.addEventListener('click', toggle);
-        }, 100);
+        }, 500);
     }
 
+    // HTML de error
     getErrorHTML() {
         return `
             <div class="min-h-screen flex items-center justify-center bg-gray-50">
@@ -483,69 +464,47 @@ class InnovaApp {
     }
 }
 
-// Improved initialization system
+// Sistema de inicialización
 let innovaAppInstance = null;
 
-// Initialize app with proper error handling
-const initializeApp = async () => {
-    try {
-        if (!innovaAppInstance) {
-            console.log('🚀 Iniciando InnovaPrev...');
-            innovaAppInstance = new InnovaApp();
-            await innovaAppInstance.init();
-            window.innovaApp = innovaAppInstance;
-        }
-    } catch (error) {
-        console.error('❌ Error crítico inicializando app:', error);
-        // Fallback initialization
-        setTimeout(initializeApp, 2000);
+const initializeApp = () => {
+    if (!innovaAppInstance) {
+        console.log('🌟 Creando instancia de InnovaPrev...');
+        innovaAppInstance = new InnovaApp();
+        window.innovaApp = innovaAppInstance;
+        innovaAppInstance.init();
     }
 };
 
-// Handle loading screen with improved logic
+// Manejo de pantalla de carga
 const handleLoadingScreen = () => {
     const loadingScreen = document.getElementById('loading-screen');
     const hasVisited = sessionStorage.getItem('hasVisitedSite');
     
-    if (!hasVisited) {
+    if (!hasVisited && loadingScreen) {
         sessionStorage.setItem('hasVisitedSite', 'true');
         setTimeout(() => {
-            if (loadingScreen) {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }
+            initializeApp();
         }, 1500);
-    } else if (loadingScreen) {
-        loadingScreen.style.display = 'none';
+    } else {
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+        initializeApp();
     }
 };
 
-// Multiple initialization strategies for robustness
+// Inicialización principal
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        initializeApp();
-        handleLoadingScreen();
-    });
-} else if (document.readyState === 'interactive' || document.readyState === 'complete') {
-    // DOM is already ready
-    initializeApp();
+    document.addEventListener('DOMContentLoaded', handleLoadingScreen);
+} else {
     handleLoadingScreen();
 }
 
-// Backup initialization after window load
+// Backup initialization
 window.addEventListener('load', () => {
     if (!innovaAppInstance) {
-        console.log('🔄 Inicialización de respaldo activada');
-        initializeApp();
-    }
-});
-
-// Handle page visibility changes (for fixing reload issues)
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && innovaAppInstance && !innovaAppInstance.isInitialized) {
-        console.log('🔄 Reinicializando después de cambio de visibilidad');
-        initializeApp();
+        console.log('🔄 Inicialización de respaldo...');
+        handleLoadingScreen();
     }
 });
