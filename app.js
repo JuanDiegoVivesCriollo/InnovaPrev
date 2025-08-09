@@ -22,12 +22,12 @@ class InnovaApp {
     async injectComponents() {
         try {
             // Inject Navbar
-            const navbarResponse = await fetch('navbar.html');
+            const navbarResponse = await fetch('content/navbar.html');
             const navbarHtml = await navbarResponse.text();
             document.getElementById('navbar-container').innerHTML = navbarHtml;
 
             // Inject Footer
-            const footerResponse = await fetch('footer.html');
+            const footerResponse = await fetch('content/footer.html');
             const footerHtml = await footerResponse.text();
             document.getElementById('footer-container').innerHTML = footerHtml;
 
@@ -66,19 +66,19 @@ class InnovaApp {
                 // Load content based on page
                 switch(pageName) {
                     case 'inicio':
-                        content = await this.fetchContent('inicio.html');
+                        content = await this.fetchContent('content/inicio.html');
                         break;
                     case 'sobre-nosotros':
-                        content = await this.fetchContent('sobre-nosotros.html');
+                        content = await this.fetchContent('content/sobre-nosotros.html');
                         break;
                     case 'servicios':
-                        content = await this.fetchContent('servicios.html');
+                        content = await this.fetchContent('content/servicios.html');
                         break;
                     case 'contacto':
-                        content = await this.fetchContent('contacto.html');
+                        content = await this.fetchContent('content/contacto.html');
                         break;
                     default:
-                        content = await this.fetchContent('inicio.html');
+                        content = await this.fetchContent('content/inicio.html');
                         pageName = 'inicio';
                 }
                 
@@ -397,7 +397,7 @@ class InnovaApp {
     async fetchPageToCache(page){
         if(this.cache.has(page)) return;
         try{
-            let file= page==='inicio'?'inicio.html':`${page}.html`;
+            let file= page==='inicio'?'content/inicio.html':`content/${page}.html`;
             const content=await this.fetchContent(file);
             this.cache.set(page,content);
         }catch(e){console.warn('Prefetch fail',page,e);}
