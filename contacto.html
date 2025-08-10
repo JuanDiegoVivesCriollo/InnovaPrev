@@ -26,9 +26,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="/dist/output.css">
+    <link rel="stylesheet" href="/css/contact-form.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
     <meta name="theme-color" content="#E85A33">
 </head>
@@ -161,13 +165,17 @@
                         <h3 class="text-2xl font-bold text-dark mb-6">Solicitar Cotización</h3>
                         <p class="text-gray-600 mb-8">Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.</p>
                         
-                        <form id="contact-form" class="space-y-6">
+                        <!-- Form Messages -->
+                        <div id="form-messages" class="mb-6 hidden"></div>
+                        
+                        <form id="contact-form" class="contact-form space-y-6">
                             <!-- Name -->
                             <div>
                                 <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nombre Completo *</label>
-                                <input type="text" id="name" name="name" required
+                                <input type="text" id="name" name="from_name" required
                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                        placeholder="Tu nombre completo">
+                                <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
                             </div>
 
                             <!-- Company -->
@@ -176,21 +184,25 @@
                                 <input type="text" id="company" name="company" required
                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                        placeholder="Nombre de tu empresa">
+                                <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
                             </div>
 
                             <!-- Email and Phone -->
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
-                                    <input type="email" id="email" name="email" required
+                                    <input type="email" id="email" name="from_email" required
                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                                           placeholder="tu@email.com">
+                                           placeholder="tu@empresa.com">
+                                    <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
                                 </div>
                                 <div>
                                     <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Teléfono *</label>
                                     <input type="tel" id="phone" name="phone" required
                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                                           placeholder="+51 999 999 999">
+                                           placeholder="+51 999 999 999"
+                                           maxlength="15">
+                                    <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
                                 </div>
                             </div>
 
@@ -200,13 +212,13 @@
                                 <select id="service" name="service"
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                                     <option value="">Seleccionar servicio</option>
-                                    <option value="planes-emergencia">Planes de Emergencia</option>
-                                    <option value="capacitacion-sst">Capacitación SST</option>
-                                    <option value="asistencia-preventiva">Asistencia Preventiva</option>
-                                    <option value="diagnostico">Diagnóstico de Infraestructura</option>
-                                    <option value="primera-respuesta">Personal de Primera Respuesta</option>
-                                    <option value="cumplimiento-normativo">Cumplimiento Normativo</option>
-                                    <option value="otros">Otros servicios</option>
+                                    <option value="Planes de Emergencia">Planes de Emergencia</option>
+                                    <option value="Capacitación SST">Capacitación SST</option>
+                                    <option value="Asistencia Preventiva">Asistencia Preventiva</option>
+                                    <option value="Diagnóstico de Infraestructura">Diagnóstico de Infraestructura</option>
+                                    <option value="Personal de Primera Respuesta">Personal de Primera Respuesta</option>
+                                    <option value="Cumplimiento Normativo">Cumplimiento Normativo</option>
+                                    <option value="Otros servicios">Otros servicios</option>
                                 </select>
                             </div>
 
@@ -214,16 +226,49 @@
                             <div>
                                 <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Mensaje *</label>
                                 <textarea id="message" name="message" rows="4" required
-                                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                                          placeholder="Cuéntanos sobre tus necesidades de seguridad laboral..."></textarea>
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                                          placeholder="Cuéntanos sobre tus necesidades de seguridad laboral..."
+                                          maxlength="500"></textarea>
+                                <div class="flex justify-between items-center mt-1">
+                                    <div class="error-message text-red-500 text-sm hidden"></div>
+                                    <div class="text-xs text-gray-400">
+                                        <span id="char-count">0</span>/500 caracteres
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Submit Button -->
-                            <button type="submit"
-                                    class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                                <i class="fa-solid fa-paper-plane mr-2"></i>
-                                Enviar Solicitud
-                            </button>
+                            <!-- Submit Buttons -->
+                            <div class="space-y-4">
+                                <!-- Email Submit Button -->
+                                <button type="submit" id="submit-btn"
+                                        class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                                    <span id="btn-text">
+                                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                                        Enviar por Email
+                                    </span>
+                                    <span id="btn-loading" class="hidden">
+                                        <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                                        Enviando...
+                                    </span>
+                                </button>
+
+                                <!-- WhatsApp Button -->
+                                <button type="button" id="whatsapp-btn"
+                                        class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
+                                    <i class="fa-brands fa-whatsapp mr-3 text-xl"></i>
+                                    <span>Enviar por WhatsApp</span>
+                                </button>
+
+                                <!-- Or divider -->
+                                <div class="relative my-4">
+                                    <div class="absolute inset-0 flex items-center">
+                                        <div class="w-full border-t border-gray-300"></div>
+                                    </div>
+                                    <div class="relative flex justify-center text-sm">
+                                        <span class="px-3 bg-white text-gray-500 font-medium">O puedes usar ambos métodos</span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Privacy Notice -->
                             <p class="text-xs text-gray-500 text-center">
@@ -311,5 +356,7 @@
     
     <!-- JavaScript -->
     <script src="/app.js"></script>
+    <script src="/js/emailjs-config.js"></script>
+    <script src="/js/contact-form.js"></script>
 </body>
 </html>
