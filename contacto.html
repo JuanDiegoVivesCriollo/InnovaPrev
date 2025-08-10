@@ -130,22 +130,6 @@
                             </div>
 
                             <!-- Email -->
-                            <div class="bg-purple-50 border border-purple-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i class="fa-solid fa-envelope text-white text-xl"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-xl font-bold text-gray-800 mb-2">Email</h4>
-                                        <p class="text-gray-600 mb-3">Para consultas detalladas y cotizaciones.</p>
-                                        <div class="text-lg font-semibold text-purple-600 mb-3">Operaciones@innovaprev.site</div>
-                                        <a href="mailto:Operaciones@innovaprev.site" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 inline-flex items-center">
-                                            <i class="fa-solid fa-envelope mr-2"></i>
-                                            Enviar Email
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- Company Info -->
@@ -237,37 +221,21 @@
                                 </div>
                             </div>
 
-                            <!-- Submit Buttons -->
+                            <!-- Submit Button -->
                             <div class="space-y-4">
-                                <!-- Email Submit Button -->
-                                <button type="submit" id="submit-btn"
-                                        class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
-                                    <span id="btn-text">
-                                        <i class="fa-solid fa-paper-plane mr-2"></i>
-                                        Enviar por Email
-                                    </span>
-                                    <span id="btn-loading" class="hidden">
-                                        <i class="fa-solid fa-spinner fa-spin mr-2"></i>
-                                        Enviando...
-                                    </span>
-                                </button>
-
-                                <!-- WhatsApp Button -->
+                                <!-- WhatsApp Submit Button -->
                                 <button type="button" id="whatsapp-btn"
-                                        class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
-                                    <i class="fa-brands fa-whatsapp mr-3 text-xl"></i>
-                                    <span>Enviar por WhatsApp</span>
+                                        class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                                    <span id="whatsapp-btn-text">
+                                        <i class="fa-brands fa-whatsapp mr-3 text-xl"></i>
+                                        <span>Enviar por WhatsApp</span>
+                                    </span>
+                                    <span id="whatsapp-btn-loading" class="hidden">
+                                        <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                                        Preparando mensaje...
+                                    </span>
                                 </button>
-
-                                <!-- Or divider -->
-                                <div class="relative my-4">
-                                    <div class="absolute inset-0 flex items-center">
-                                        <div class="w-full border-t border-gray-300"></div>
-                                    </div>
-                                    <div class="relative flex justify-center text-sm">
-                                        <span class="px-3 bg-white text-gray-500 font-medium">O puedes usar ambos métodos</span>
-                                    </div>
-                                </div>
+                            </div>
                             </div>
 
                             <!-- Privacy Notice -->
@@ -356,7 +324,6 @@
     
     <!-- JavaScript -->
     <script src="/app.js"></script>
-    <script src="/js/emailjs-config.js"></script>
-    <script src="/js/contact-form.js"></script>
+    <script src="/js/contact-form-simple.js"></script>
 </body>
 </html>
